@@ -1,0 +1,678 @@
+Unneccessary Codes.. 
+
+
+
+
+ {{-- scripts page --}}
+   {{-- <script src="{{ asset('js/gmaps.js') }}"></script> --}}
+
+
+ 
+   {{--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZWTTkguiQpNFtckZZ5lpJLvVvMc0hsmI&libraries=geometry,places"></
+   script> --}}
+
+
+
+
+<div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+            <header class="demo-drawer-header">
+                <img src="{{ asset('assets/img/avatars/default.jpg') }}" class="demo-avatar">
+                <div class="demo-avatar-dropdown">
+                    <span>{{ Auth::user()->name }}</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                        <i class="material-icons" role="presentation">arrow_drop_down</i>
+                        <span class="visuallyhidden">Accounts</span>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+                        <li class="mdl-menu__item">Update Profile</li>
+                        <li class="mdl-menu__item">View Profile</li>
+                        <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+                    </ul>
+                </div>
+            </header>
+
+            <nav id="navigation" class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                
+                <router-link class="mdl-navigation__link" exact to="/">
+                    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home
+                </router-link>  
+
+
+                <router-link class="mdl-navigation__link" exact to="/pickup-parcels">
+                    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Pickup Parcels
+                </router-link>  
+
+
+                <router-link class="mdl-navigation__link" exact to="/deliveries">
+                    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Deliveries for Today
+                </router-link>  
+            </nav>
+            
+        </div>
+
+        <main class="mdl-layout__content mdl-color--grey-100">
+
+            <router-view></router-view>
+
+        </main>
+
+
+
+
+        
+
+
+<a class="mdl-navigation__link" href="{{ route('courier.pickup') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Pickup Parcels</a>
+                <a class="mdl-navigation__link" href="{{ route('courier.deliveries') }}"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Deliveries for Today</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                <div class="mdl-layout-spacer"></div>
+                <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+
+
+<!--    <gmap-info-window :position="startLocation">
+        Hello world!
+    </gmap-info-window>
+-->
+
+<!-- <google-marker v-for="m in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position"></google-marker> -->
+
+<!-- 
+    <gmap-marker v-for="(item, key) in markers" 
+    :key="key"
+    :position="item.position" 
+    :clickable="true" 
+    @click="center=m.position">
+</gmap-marker>
+-->
+
+
+
+
+<!-- @click="toggleInfo(item, key)" -->
+    <!--    <gmap-marker v-for="(item, key) in coordinates" :key="key" :value="newEvent.address" position="getPosition(item)" :clickable="true" @click="toggleInfo(item, key)" />
+    </gmap-marker>
+--> <!-- Floating Action Button
+<!--        <div class="floating-button page-fab animated bouncein delay-3">
+            <a class="btn-floating btn-large waves-effect waves-light accent-color btn z-depth-1 modal-trigger" href="#modal4">
+                <i class="ion-plus"></i>
+            </a>
+        </div>
+    -->
+
+
+
+LABELS : 
+1. Controllers 
+2. Function .. 
+3. Routes.
+
+
+
+            // coordinates: {
+            //  0: {
+            //      full_name: 'Erich  Kunze',
+            //      lat:'10.31',
+            //      lng: '123.89'
+            //  },
+            //  1: {
+            //      full_name: 'Delmer Olson',
+            //      lat: '10.32',
+            //      lng: '123.89'
+            //  }
+            // },
+
+
+
+{{-- 
+
+<div class="form-group row role_id" id="form-group-role">
+    <div class="col-md-9"
+    >
+        <div class="form-material">
+            {{-- {!! Form::select('role_id', $roles->title, ['class' => 'form-control','id' => 'material-select']) !!} --}}
+            <select name="role_id" id="role_id" class="form-control {{ $errors->has('role_id') ? 'is-invalid' : '' }}" > 
+                @foreach ($roles as $role) 
+                <option id="role_id" value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
+            </select>
+
+            <label for="material-select">Member Type</label>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group row add_barangay_id" style=" display:block ; " id="form-group-barangay">
+    <div class="col-md-9">
+        <div class="form-material">
+            {{-- {!! Form::select('role_id', $roles->title, ['class' => 'form-control','id' => 'material-select']) !!} --}}
+            <select name="barangay_id" id="barangay_id" class="form-control" > 
+                @foreach ($barangays as $barangay ) 
+                <option class="selection "value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                @endforeach
+            </select>
+            <label for="material-select">Assign Barangay</label>
+        </div>
+    </div>
+</div> --}}
+
+
+
+
+
+
+
+[ 1 ] 
+
+
+
+
+    public function getDeliveriesForToday() {
+        $id = Auth::id();
+        return response($id);
+        // $this->showTodaysDelivery($user_id); 
+    }
+
+    public function todaysDelivery() {
+
+
+        // Get the currently authenticated users_id..
+        // Get his current location..[lat-lng] should be the starting location..
+        // $user_id = \Auth::user()->id ;   
+        // $this->showTodaysDelivery($user_id); 
+        // $myLocation = Parcel::where('delete()ivery_date','=',Carbon::now()); 
+        // $current_location = \Auth::user()->
+        // $deliveries =  SeniorCitizen
+        // $deliveries = SeniorCitizenMedicine::
+        // return $deliveries ;
+        // return view('courier.todays-deliveries');    
+        return view('courier.todays-delivery');
+        // return response()->json([
+        //      'user_id' => $user_id,
+        //      'courier_id' => $courier_id]) ; 
+        //  $start_location = User::join()      ;
+        //  return response()->json([$id, $courier_id]) ; 
+    }
+    
+    public function getUndeliveredOrders() {
+        $orders = $this->undeliveredOrders();
+        return view('orders')->with('orders', $orders);
+    }
+
+  public function testMap() {
+        return view('courier.test');
+    }
+
+    public function gmaps() {
+        return view('courier.gmaps');
+    }
+
+    public function pendingDeliveries() {
+        return view('courier.pending-deliveries');
+    }
+
+authenticatesusers.php
+
+
+
+    public function adminPostLogin(Request $request){
+        // $this->validateLogin($request); 
+
+        // // if ($this->attemptLogin($request)){ 
+
+
+        // //     $this->redirectTo(); 
+
+        // //     $role_id =  auth()->user()->role_id  ; 
+
+        // //     switch ($role_id) 
+        // //     {
+
+        // //         case 1: return redirect()->route('admin.dashboard') ; break ;
+
+        // //         default: return redirect()->back()->withInput()->withErrors($error => );
+
+        // //     }   
+        // // }
+
+
+
+        // // return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors($errors);
+    }
+
+
+SMSController.php 
+
+
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\SeniorCitizenMedicine ; 
+use DB;  
+use Carbon\Carbon ;
+// use App\Filters\PackagesFilters ; 
+class SMSController extends Controller
+{
+
+public function getsTomorrowsParcelInformation(){
+$infos = DB::table('senior_citizen_medicines')
+->join('senior_citizens_rosters','senior_citizens_rosters.id','=','senior_citizen_medicines.senior_citizen_id')
+->select('senior_citizens_rosters.mobile_phone','senior_citizens_rosters.first_name','senior_citizens_rosters.last_name')
+->where('senior_citizen_medicines.delivery_date','=',Carbon::tomorrow('Asia/Manila')) ; 
+
+return $infos ; 
+
+}
+
+
+public function postSMS(){
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+[ 2 ]
+public function districts(){
+$districts = DB::table('districts')->get();  
+return response()->json($districts);
+}
+
+
+
+
+public function dashboard(){
+return view('dashboard');
+}
+
+
+public function tasks(){
+return view('pages.task');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+[ 3 ]
+
+
+
+// Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], function () {
+//     // Route::get('dashboard','AppController@dashboard');
+//     Route::get('dashboard', 'AdministratorController@renderDashboard')->name('admin/dashboard');
+//     Route::get('user/list', ['as' => 'showUsersList', 'uses' => 'AdministratorController@showAllUsers']);
+//     Route::get('user/social-workers', ['as' => 'showAllSocialWorkers', 'uses' => 'AdministratorController@showAllSocialWorkers']);
+//     Route::get('user/create', ['as' => 'showCreateUserForm', 'uses' => 'AdministratorController@showCreateUserForm']);
+//     Route::post('user/update', ['as' => 'updateUser', 'uses' => 'AdministratorController@updateUser']);
+//     Route::post('user/store', ['as' => 'storeUser',
+//         'uses' => 'AdministratorController@storeUser']);
+
+
+//     Route::post('user/delete', ['as' => 'deleteUser', 'uses' => 'AdministratorController@deleteUser']);
+
+
+
+// //medicine dosage routes
+//     Route::get('medicines/listings', 'AdministratorController@getMedicinesList')->name('medicines');
+//     Route::get('medicine/create', 'AdministratorController@createMedicineForm');
+//     Route::get('medicine/show/{id}', 'AdministratorController@showMedicine')->name('showDosage');
+//     Route::post('medicine/store', 'AdministratorController@storeDosage')->name('storeMedicine');
+//     Route::post('medicine/update', 'AdministratorController@updateDosage')->name('updateDosage');
+//     Route::post('medicine/delete', 'AdministratorController@deleteDosage');
+
+//     /*** Barangays **/
+//     Route::get('barangays/registered', 'AdministratorController@barangays');
+//     Route::get('barangay/register', 'AdministratorController@showBarangayForm');
+//     Route::post('barangay/store', ['as' => 'postBarangay',
+//         'uses' => 'AdministratorController@storeBarangay'
+//     ]);
+//     Route::delete('barangay/delete', 'AdministratorController@deleteBarangay');
+//     //Update Profile for administrators..
+//     Route::get('profile', 'AdministratorController@editForm');
+// });
+
+
+
+
+// }) ;
+
+// Route::get('user/list', ['as' => 'showUsersList', 'uses' => 'AdminController@showAllUsers']);
+// Route::get('user/social-workers', ['as' => 'showAllSocialWorkers', 'uses' => 'AdminController@showAllSocialWorkers']);
+// Route::get('user/create', ['as' => 'showCreateUserForm', 'uses' => 'AdminController@showCreateUserForm']);
+// Route::post('user/update', ['as' => 'updateUser', 'uses' => 'AdminController@updateUser']);
+// Route::post('user/store', ['as' => 'storeUser',
+//     'uses' => 'AdminController@storeUser']);
+
+
+// Route::post('user/delete', ['as' => 'deleteUser', 'uses' => 'AdminController@deleteUser']);
+
+
+
+// //medicine dosage routes
+// Route::get('medicines/listings', 'AdminController@getMedicinesList')->name('medicines');
+// Route::get('medicine/create', 'AdminController@createMedicineForm');
+// Route::get('medicine/show/{id}', 'AdminController@showMedicine')->name('showDosage');
+// Route::post('medicine/store', 'AdminController@storeDosage')->name('storeMedicine');
+// Route::post('medicine/update', 'AdminController@updateDosage')->name('updateDosage');
+// Route::post('medicine/delete', 'AdminController@deleteDosage');
+
+// /*** Barangays **/
+// Route::get('barangays/registered', 'AdminController@barangays');
+// Route::get('barangay/register', 'AdminController@showBarangayForm');
+// Route::post('barangay/store', ['as' => 'postBarangay',
+//     'uses' => 'AdminController@storeBarangay'
+// ]);
+// Route::delete('barangay/delete', 'AdminController@deleteBarangay');
+//     //Update Profile for administrators..
+// Route::get('profile', 'AdminController@editForm');
+
+
+//Courier and others...
+// mix.js('resources/assets/js/js/sweetalert.js','public/dist/js');
+
+//Admin modules..
+
+// mix.js('resources/assets/js/js/admin.js','public/dist/js');
+
+
+
+
+// mix.js('resources/assets/js/main.js','public/build/js/');
+
+
+// mix.js('public/dist/js/functions.js', 'public/dist/js/functions.js');
+
+// mix.combine(['resources/assets/lib/jquery.min.js',
+//  'resources/assets/lib/jquery.swipebox.min.js',
+//  'resources/assets/lib/jquery.smoothState.min.js',
+//  'resources/assets/lib/materialize.min.js',
+//  'resources/assets/lib/swiper.min.js',
+//  'resources/assets/lib/jquery.mixitup.min.js',
+//  'resources/assets/lib/masonry.min.js',
+//  'resources/assets/lib/Chart.min.js',
+//  'resources/assets/lib/functions.js',
+//  ],'public/dist/js/courier.js');
+
+
+// mix.combine(['resources/assets/lib/keyframes.css',
+//  'resources/assets/lib/materialize.min.css',
+//  'resources/assets/lib/swiper.css',
+//  'resources/assets/lib/swipebox.min.css',
+//  'resources/assets/lib/styles.css',
+//  ],'public/dist/css/courier.css');
+
+
+// mix.version();
+
+
+// mix.js('resources/assets/js/js/maps.js','public/build/js/maps.js');
+
+// mix.combine(['resources/assets/lib/styles/style.css',
+//  'resources/assets/lib/styles/framework-style.css',
+//  'resources/assets/lib/styles/framework.css',
+//  'resources/assets/lib/styles/coach.css',
+//  'resources/assets/lib/styles/icons.css',
+//  'resources/assets/lib/styles/retina.css',
+//  ],'public/build/css/app_courier.css') ; 
+
+// mix.combine(['resources/assets/lib/scripts/jquery.min.js',
+//  'resources/assets/lib/scripts/jquery-ui-min.js',
+//  'resources/assets/lib/scripts/subscribe.js',
+//  'resources/assets/lib/scripts/contact.js',
+//  'resources/assets/lib/scripts/swipe.js',
+//  'resources/assets/lib/scripts/swipebox.js',
+//  'resources/assets/lib/scripts/colorbox.js',
+//  'resources/assets/lib/scripts/retina.js',
+//  'resources/assets/lib/scripts/custom.js',
+//  'resources/assets/lib/scripts/framework.js',
+//  ],'public/build/js/app_courier.js') ; 
+
+
+
+
+
+
+// mix.combine(['resources/assets/lib/mobile/js/.css',
+//  'resources/assets/lib/mobile/style.css',
+//  'resources/assets/lib/mobile/swipebox.css',
+//  ],'public/css/app.css') ; 
+
+
+
+
+
+//Admin..
+// mix.combine(['public/assets/js/core/jquery.min.js',
+//  'public/assets/js/core/popper.min.js',
+//  'public/assets/js/core/bootstrap.min.js',
+//  'public/assets/js/core/jquery.slimscroll.min.js',
+//  'public/assets/js/core/jquery.scrollLock.min.js',
+//  'public/assets/js/core/jquery.appear.min.js',
+//  'public/assets/js/core/jquery.countTo.min.js',
+//  'public/assets/js/core/js.cookie.min.js',
+//  'public/assets/js/codebase.js'
+//  ],'public/build/js/core-admin.js');
+
+// mix.js('resources/assets/js/admin.js','public/build/js/admin.js');
+
+
+// mix.sass('resousrces/assets/sass/app.scss','public/css/app2.css');
+
+// mix.version();   
+
+
+
+// if (process.env.npm_lifecycle_event !== 'hot') {
+//  mix.version()
+// }
+// const path = require('path');
+// // fix css files 404 issue
+// mix.webpackConfig({
+//  devServer: {
+//      contentBase: path.resolve(__dirname, 'public'),
+//  }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// mix.sass('resources/asets/sass/main.scss','public/css/app.css');
+
+
+
+// mix.styles(['public/assets/css/alpha.min.css','public/assets/css/custom.css'],'public/css/main.css');
+
+
+// mix.css('resources/assets/sass/layouts.scss','public/css/app.css');
+
+// mix.styles(['resources/assets/lib/plugins/metrojs/MetroJs.min.css',
+//  'resources/assets/lib/plugins/weather-icons-master/css/weather-icons.min.css',
+//  ],'public/css/dashboard.css') ; 
+
+
+
+// mix.styles(['resources/assets/lib/css/alpha.min.css',
+//  'resources/assets/lib/css/custom.css'],'public/css/theme-styles.css');
+
+// mix.scripts(['resources/assets/lib/plugins/materialize/js/materialize.min.js',
+//  'resources/assets/lib/plugins/material-preloader/js/materialPreloader.min.js',
+//  'resources/assets/lib/plugins/jquery-blockui/jquery.blockui.js',
+//  'resources/assets/lib/plugins/js/alpha.min.js'
+//  ],'public/build/js/dashboard.js');
+
+
+// mix.sass('resources/assets/js/main.scss','public/build/css');
+
+// mix.js(['resources/assets/js/store_info.js',
+//  'resouces/assets'
+//  ],'public/js');
+
+
+// mix.js('resources/assets/js/script.js','public/js');
+
+
+// mix.styles(['public/assets/css/font-awesome.min.css','resources/assets/lib/bootstrap4.0.css','resources/assets/lib/main.css'],'public/css/courier/dashboard.css') ;
+// mix.scripts(['resources/assets/lib/jquery.min.js',
+//           'resources/assets/lib/tether/tether.min.js',
+//           'resources/assets/js/lib/bootstrap/bootstrap.min.js',
+//           'resources/assets/lib/plugins.js','resources/assets/lib/app.js'],'public/js/courier/dashboard.js') ; 
+
+// mix.js(['resources/assets/js/scripts/tspsolver.js' , 
+//  'resources/assets/js/scripts/tsp.js'
+//  'resources/assets/js/scripts/tsp-init.js', 
+//  ],'js/tsp.js') ; 
+
+// mix.js('resources/assets/js/xhr/get.js','public/js');
+// mix.sass('resources/assets/sass/fonts.scss','public/css');
+
+
+
+// mix.js('resources/assets/js/app.js','public/js/app.js');
+// mix.js('public/js/actions.js','public/js');
+
+
+
+
+
+
+
+
+// mix.js('re')
+
+
+// mix.js('resources/assets/sass/fonts.scss', 'public/css');
+// mix.js('resources/assets/js/xhr/_request.js','public/js')
+// mix.version();
+
+
+
+
+// mix.combine(['resources/assets/lib/css/bootstrap.min.css',
+//  'resources/assets/lib/vendors/themify/css/themify-icons.css',
+//  'resources/assets/lib/vendors/iCheck/css/all.css',
+//  'resources/assets/lib/vendors/bootstrapvalidator/css/bootstrapValidator.min.css',
+//  'resources/assets/lib/css/login.css', ],'public/dist/css/auth.css')
+
+
+// mix.combine(['resources/assets/lib/vendors/iCheck/css/all.css',
+//  'resources/assets/lib/vendors/bootstrap-fileinput/css/fileinput.min.css',
+//  'resources/assets/lib/css/custom_css/skins/skin-default.css',
+//  'resources/assets/lib/css/formelements.css',
+//  ],'public/dist/css/forms.css'); 
+
+
+
+
+// mix.combine(['resources/assets/lib/vendors/iCheck/js/iCheck.js',
+//  'resources/assets/lib/vendors/bootstrap-fileinput/js/fileinput.min.js',
+//  'resources/assets/lib/js/custom_js/form_elements.js',
+//  ],'public/dist/js/forms.js'); 
+
+
+
+// mix.combine([
+//  './resources/assets/lib/css/app.css',
+//  './resources/assets/lib/css/custom.css',
+//  './resources/assets/lib/css/custom_css/skins/skin-default.css',
+//  './resources/assets/lib/vendors/animate/animate.min.css',
+//  './resources/assets/lib/css/custom_css/advanced_modals.css']
+//  ,'public/dist/css/modal.css') ;
+
+
+// mix.copy(['./resources/assets/lib/js/custom_js/advanced_modals.js'],
+//  'public/dist/js/modal.js') ;
+
+
+
+// mix.combine(['resources/assets/lib/css/custom.css',
+//  'resources/assets/lib/css/custom_css/skins/skin-default.css', 
+//  'resources/assets/lib/vendors/sweetalert2/css/sweetalert2.min.css', 
+//  'resources/assets/lib/css/custom_css/sweet_alert2.css',
+//  'resources/assets/sass/sweetalert.css',
+//  'resources/assets/sass/fonts.scss'
+//  ],'public/dist/css/sweetalert.css') ; 
+
+
+// mix.copy('resources/assets/lib/vendors/sweetalert2/js/sweetalert2.min.js','public/dist/js/sweetalert.js') ;
+
+
+
+
+
+// mix.combine(['public/dist/css/sweetalert2.min.css',
+//  'public/dist/css/sweet_alert2.css'
+//  ],'public/dist/css/sweetalert.css') ; 
+
+// mix.combine(['public/dist/css/animate.min.csss',
+//  'public/dist/css/advanced_modals.css'
+//  ],'public/dist/css/modal.css') ; 
+
+
+// mix.combine(['public/dist/js/js/jquery.dataTables.js',
+//  'public/dist/js/dataTables.bootstrap.js',
+//  'public/dist/js/datatables_custom.js'
+//  ],'public/dist/js/table.js')
+
+
+// mix.combine(['public/dist/js/sweetalert2.min.js',
+//  'public/dist/js/sweetalert.js'],'public/dist/js/sweetalert.js')
+
+
+
+// mix.combine(['resources/assets/lib/mobile/js/jquery-1.10.1.min.js',
+//  'resources/assets/lib/mobile/js/jquery.validate.min.js',
+//  'resources/assets/lib/mobile/js/framework7.min.js',
+//  'resources/assets/lib/mobile/js/my-app.js',
+//  'resources/assets/lib/mobile/js/jquery.swipebox.js',
+//  'resources/assets/lib/mobile/js/jquery.fitvids.js',
+//  'resources/assets/lib/mobile/js/email.js'],'public/build/js/app_courier.js');
+
+
+// mix.
