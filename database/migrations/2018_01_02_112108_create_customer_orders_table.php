@@ -15,14 +15,14 @@ class CreateCustomerOrdersTable extends Migration
     {
 
         Schema::create('delivery_status_codes', function (Blueprint $table) {
-            $table->integer('status_code')->unsigned()->primary() ; 
+            $table->integer('status_code')->unsigned()->primary();
             $table->string('title');
             $table->string('description');
         });
 
 
         Schema::create('order_status_codes', function (Blueprint $table) {
-            $table->integer('status_code')->unsigned()->primary() ; 
+            $table->integer('status_code')->unsigned()->primary();
             $table->string('title');
             $table->string('description');
         });
@@ -34,15 +34,15 @@ class CreateCustomerOrdersTable extends Migration
 
             $table->integer('senior_citizen_id')->unsigned();
 
-            $table->integer('order_status_code')->unsigned() ; 
-            
+            $table->integer('order_status_code')->unsigned();
+
             $table->foreign('senior_citizen_id')->references('id')->on('senior_citizens');
-            
+
             $table->foreign('order_status_code')->references('status_code')->on('order_status_codes');
 
-            $table->timestamp('placed_on');  
+            $table->timestamp('placed_on');
 
-            $table->decimal('total_amount', 5, 2);    
+            $table->decimal('total_amount', 5, 2);
 
             $table->string('comments');
 

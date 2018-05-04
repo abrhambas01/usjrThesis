@@ -9,9 +9,9 @@ import Echo from 'laravel-echo';
 
 
 /** To use vuetify*/	
-import Vuetify from 'vuetify'
+import Vuetify from 'vuetify';
 
-import vuetifyCss from 'vuetify/dist/vuetify.min.css';
+// import vuetifyCss from 'vuetify/dist/vuetify.min.css';
 
 
 window.Vue = Vue;
@@ -34,25 +34,11 @@ Vue.use(VueRouter);
 
 
 /*Switched to a simple one .--- Starts here -- assigning it to window */
-/*
-let authorizations  = require('./authorizations') ; 
-
-Vue.prototype.authorize = function (...params) {
-	if (!window.App.signedIn) {
-	
-	}
-}; 
-*/
-
 Vue.use(Vuetify);
 
 
+Vue.prototype.authUser = window.App.user ;
 
-
-
-
-Vue.prototype.authUserId = window.App.user.id ;
-Vue.prototype.authUserName = window.App.user.name ; 
 
 window.Echo = new Echo({
 	broadcaster: 'pusher',

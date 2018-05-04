@@ -57,7 +57,8 @@
 
 <link rel="stylesheet" href="{{ asset('css/iconfont/material-icons.css') }}">
 
-<link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
+
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.purple-yellow.min.css" />
 
 <link rel="stylesheet" href="{{ asset('dist/css/styles.css') }} ">
 
@@ -77,22 +78,22 @@
 </head>
 <body>
     <!--
-    Main Page is App.vue I just mounted it inside here..-->
+    	Main Page is App.vue I just mounted it inside here..-->
 
-    <div id="app"></div>
+    	<div id="app"></div>
 
-    @yield('content')
-
-
-    <script src="{{ mix('dist/js/app.js') }}"></script>
+    	@yield('content')
 
 
-
-    {{-- Include when using jetpack template --}}
-
-    {{-- <script src="{{ asset('dist/js/courier.js') }}"></script> --}}
+    	<script src="{{ mix('dist/js/app.js') }}"></script>
 
 
-    @yield('scripts')
-</body>
-</html>
+
+    	{{-- Include when using jetpack template --}}
+
+    	{{-- <script src="{{ asset('dist/js/courier.js') }}"></script> --}}
+
+
+    	@yield('scripts')
+    </body>
+    </html>

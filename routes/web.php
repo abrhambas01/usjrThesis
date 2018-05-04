@@ -187,7 +187,7 @@ Route::post('text',function(){
     
     curl_setopt($ch, CURLOPT_POST, 1);
     
-    curl_setopt($ch, CURLOPT_POSTFIELDS, 
+    curl_setopt($ch, CURLOPT_POSTFIELDS,
 
       http_build_query($itexmo));
     
@@ -241,6 +241,7 @@ Route::group(['middleware' => ['auth', 'isCourier']], function () {
 
 
 });
+
 
 
 Route::get("/es6",function(){
