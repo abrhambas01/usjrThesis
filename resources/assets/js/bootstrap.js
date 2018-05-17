@@ -4,14 +4,14 @@ import Vue from 'vue';
 
 import VueRouter from 'vue-router';
 
-
 import Echo from 'laravel-echo';
 
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 /** To use vuetify*/	
 import Vuetify from 'vuetify';
 
-// import vuetifyCss from 'vuetify/dist/vuetify.min.css';
+import vuetifyCss from 'vuetify/dist/vuetify.min.css';
 
 
 window.Vue = Vue;
@@ -30,11 +30,30 @@ window.Pusher = require('pusher-js');
 Vue.use(VueRouter);
 
 
+Vue.use(VueGoogleMaps, {
+	load: {
+		key: 'AIzaSyA6vKL6Q4u5ZhGAJlYOMkQZ13pxCUXOe9k',
+		libraries: 'places'
+	}
+});
 
 
-
-/*Switched to a simple one .--- Starts here -- assigning it to window */
+/*Switched to a simple one  ---
+ Starts here -- assigning it to window 
+ */
 Vue.use(Vuetify);
+
+
+import colors from 'vuetify/es5/util/colors'
+
+Vue.use(Vuetify, {
+	theme: { primary: colors.cyan.darken-1, // #E53935
+	}
+})
+
+
+Vue.component('google-map', VueGoogleMaps.Map);
+Vue.component('google-marker', VueGoogleMaps.Marker);
 
 
 Vue.prototype.authUser = window.App.user ;

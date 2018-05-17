@@ -2,7 +2,7 @@
 	<div>
 		<div class="demo-card-wide mdl-card mdl-shadow--2dp"  id="weather-card">
 			<div class="mdl-card__title">
-				<h2 class="mdl-card__title-text">Welcome {{ authUserName }}</h2>
+				<h2 class="mdl-card__title-text">Welcome {{ authUser.name }}</h2>
 			</div>
 			<div class="mdl-card__supporting-text">
 				<weather 
@@ -16,7 +16,7 @@
 		</div>
 		<div class="mdl-card__actions mdl-card--border">
 			<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-				Get Started
+				See weather 
 			</a>
 		</div>
 		<div class="mdl-card__menu">
@@ -49,32 +49,36 @@
 
 </template>
 <script>
-	import VueWeatherWidget from 'vue-weather-widget';
+import VueWeatherWidget from 'vue-weather-widget';
 
-	import 'vue-weather-widget/dist/css/vue-weather-widget.css';
-	import VueCharts from 'vue-chartjs'
-	import { Bar, Line } from 'vue-chartjs'
-	import CommitChart from '../CommitCharts.js'
+import 'vue-weather-widget/dist/css/vue-weather-widget.css';
+import VueCharts from 'vue-chartjs'
+import { Bar, Line } from 'vue-chartjs'
+import CommitChart from '../CommitCharts.js'
 
-	export default {
-		components :  {
-			'weather': VueWeatherWidget,
-			'commit-chart' : CommitChart
-		}
-	}	
+export default {
+	components :  {
+		'weather': VueWeatherWidget,
+		'commit-chart' : CommitChart
+	}
+}	
 </script>
 
 <style>
-	#weather-card {
-		width : 100% ;
-		margin-top:30px;
-		background-color : #FAFAFA;
-	}
-	#commit-chart {
-		margin-top : 4.7%;
-		width : 100% ;
-		background-color : #FAFAFA;
+#weather-card {
+	width : 100% ;
+	margin-top: 0px;
+	background-color : #FAFAFA;
+}
+#commit-chart {
+	margin-top : 4.7%;
+	width : 100% ;
+	background-color : #FAFAFA;
 
 
-	}
+}
+
+.mdl-button.mdl-button--colored {
+    color: #3b52ff;
+}
 </style>

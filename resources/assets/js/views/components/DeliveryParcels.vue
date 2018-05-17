@@ -8,7 +8,7 @@
     <span v-for="p in ownersUniqueNames">Owner : {{ p.owner.first_name }} {{ p.owner.last_name}} </span>
     
     <span v-for="p in parcel">Medicine ID : {{ p.medicine_id }} - {{ p.qty }} pcs</span>
-
+    
   </div>
 </template>
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Core\Traits\RetrievesRecords;
@@ -40,7 +39,7 @@ class CourierController extends Controller {
   public function home()
   {
     app('debugbar')->disable();
-    return view('courier.dashboard');
+    return view('courier');
   }
 
 

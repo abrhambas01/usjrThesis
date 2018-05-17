@@ -1,51 +1,36 @@
 <template>
-	<!--<div class="demo-card-wide mdl-card mdl-shadow&#45;&#45;2dp" >-->
-		<!--<div class="mdl-card__title">-->
-			<!--<h2 class="mdl-card__title-text">To pack parcels</h2>-->
-			<!--</div>-->
-			<!--<div class="mdl-card__supporting-text">-->
-				<!--<p>Lorem ipsum dolor sit amet.</p>-->
+	<v-layout>
+		<v-flex xs12 sm6 offset-sm3>
+			<v-card>
+				<v-card-media
+				class="white--text"
+				height="200px"
+				src="/static/doc-images/cards/docks.jpg"
+				>
+				<v-container fill-height fluid>
+					<v-layout fill-height>
+						<v-flex xs12 align-end flexbox>
+							<span class="headline">Top 10 Australian beaches</span>
+						</v-flex>
+					</v-layout>
+				</v-container>
+			</v-card-media>
+			<v-card-title>
+				<div>
+					<span class="grey--text">Number 10</span><br>
+					<span>Whitehaven Beach</span><br>
+					<span>Whitsunday Island, Whitsunday Islands</span>
+				</div>
+			</v-card-title>
+			<v-card-actions>
+				<v-btn flat color="orange">Share</v-btn>
+				<v-btn flat color="orange">Explore</v-btn>
+			</v-card-actions>
+		</v-card>
+	</v-flex>
+</v-layout>
 
-				<!--</div>-->
-				<!--<div class="mdl-card__actions mdl-card&#45;&#45;border">-->
-					<!--<a class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect">-->
-						<!--Get Started-->
-						<!--</a>-->
-						<!--</div>-->
-						<!--<div class="mdl-card__menu">-->
-							<!--<button class="mdl-button mdl-button&#45;&#45;icon mdl-js-button mdl-js-ripple-effect">-->
-								<!--<i class="material-icons">share</i>-->
-								<!--</button>-->
-								<!--</div>-->
-								<!--</div>-->
-								<section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
-									<div class="page-content">
-										<h3>TO Pack</h3>
-									</div>
-								</section>
-
-								
-	<!-- <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-		<div class="mdl-card__title">
-			<h2 class="mdl-card__title-text">Parcels To Pack</h2>
-		</div>
-		<div class="mdl-card__supporting-tex
-		t">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			Mauris sagittis pellentesque lacus eleifend lacinia...
-		</div>
-		<div class="mdl-card__actions mdl-card--border">
-			<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-				Get Started
-			</a>
-		</div>
-		<div class="mdl-card__menu">
-			<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-				<i class="material-icons">share</i>
-			</button>
-		</div>
-	</div>
---></template>
+</template>
 
 <style>
 

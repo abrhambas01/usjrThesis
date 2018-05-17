@@ -95,7 +95,7 @@ export default {
 				zoom: 10 ,
 				disableDefaultUI : true , 
 				mapTypeId : 'terrain',
-				styles :[{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}]
+				styles : [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}]
 			},
 
 			dataUpdate : {
@@ -109,11 +109,10 @@ export default {
 			size : '40px' ,
 
 			//Center of cebu
-
-			// startLocation : {	
-			// 	lat: 10.3157, 
-			// 	lng : 123.8854
-			// } ,
+			startLocation : {	
+				lat: 10.3157, 
+				lng : 123.8854
+			} ,
 
 
 
@@ -278,6 +277,13 @@ export default {
 
 
 			locateMe(){
+
+
+				this.$getLocation()
+				.then(coordinates => {
+					console.log(coordinates);
+				});
+				
 				return new Promise((resolve, reject) => {
 
 					if (navigator && navigator.geolocation) {
@@ -380,7 +386,7 @@ export default {
 	};
 	</script>
 
-<style lang="css" scoped>
+	<style lang="css" scoped>
 /* Always set the map height explicitly to de	e the size of the div
 * element that contains the map. */
 #map { 
@@ -397,7 +403,7 @@ export default {
 
 .form-inputs {
 	position: absolute; 
-    top: 0.7%;
+	top: 0.7%;
 	left: 10px; 
 	z-index: 5;
 	background-color: #fff;

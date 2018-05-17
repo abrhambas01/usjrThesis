@@ -8,13 +8,10 @@
 			<h4 class="shipping-address">Update Account Information</h4>
 
 			<div>
-
-
 				<div class="input-field">
 					<input id="first_name" type="text" class="validate">
 					<label for="first_name">First Name</label>
 				</div>
-
 
 				<div class="input-field">
 					<input id="first_name" type="text" class="validate">
@@ -85,6 +82,9 @@ export default {
 
 
 	methods : { 
+		saveProfile(){
+			
+		}
 
 		getFormInformation(){
 			axios.get('/api/v1/getFormInformation')

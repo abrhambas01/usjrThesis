@@ -110,11 +110,10 @@ export default {
 				success: function(position) {
 
 					this.locationFound = true ;
-
+					
 					this.myLocation.lat = position.coords.latitude ; 
 
 					this.myLocation.lng = position.coords.longitude ; 
-
 
 					var map = new google.maps.Map(document.getElementById('map'), {
 						zoom: 20,

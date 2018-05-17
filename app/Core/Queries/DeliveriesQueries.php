@@ -9,7 +9,6 @@ class DeliveriesQueries {
 
 	public function retrieveTodaysDeliveries()
 	{
-
 		$today = Carbon::today(); 
 
 		$id = auth()->user()->id ; 

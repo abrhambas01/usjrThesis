@@ -1,13 +1,13 @@
 <?php
 /*
 
--------------------------
+---------------------------------------------------------------------------
+| MYPHARMA ROUTE ENDPOINTS..
+| Project ; Mypharma
+  Purpose : for IT PROJECT
+| /@tagudearl, @abrhamabas02 @jercmacsero
 |
-| MYPHARMA Route endpoints. 
-|
-|
-|
------------------------------
+-------------------------------------------------------------------------------
 */
 
 
@@ -45,8 +45,8 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function 
 
   Route::get('members/couriers',
     [
-    'as' => 'members.couriers' , 
-    'uses' =>    'MembersController@couriers'
+      'as' => 'members.couriers' , 
+      'uses' =>    'MembersController@couriers'
     ]);
 
   Route::get('members/social-workers', [  'as' => 'members.socialworkers',   'uses' => 'MembersController@socialworkers']);
@@ -243,10 +243,11 @@ Route::group(['middleware' => ['auth', 'isCourier']], function () {
 });
 
 
+Route::get('/mapping',function(){
 
-Route::get("/es6",function(){
-  return view('es6');
-}) ; 
+  return view("layouts.courier2");
+
+});  
 /*
 other courier routes
 
@@ -292,7 +293,7 @@ owner_name
 */
 
 
-Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack');
+Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->name("api.deliveries");
 
 
 /*
@@ -309,7 +310,7 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack');
 
 */
 
-    Route::get('api/v1/parcels','CourierController@getDeliveriesInformation')->name('api.deliveries');
+  Route::get('api/v1/parcels','CourierController@getDeliveriesInformation')->name('api.deliveries');
 
 
 /** 
@@ -384,18 +385,18 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack');
 
 
 
-  /*
-  |-------------------------------------------------------------------------------
-  | Sends API Routes Data
-  |-------------------------------------------------------------------------------
-  | URL:            /#/deliveries/today
-  | Controller:     CourierController@getTodaysParcels
-  | Method:         post
-    Actor :         courier
-  | Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
-  */
+/*
+|-------------------------------------------------------------------------------
+| Sends API Routes Data
+|-------------------------------------------------------------------------------
+| URL:            /#/deliveries/today
+| Controller:     CourierController@getTodaysParcels
+| Method:         post
+  Actor :         courier
+| Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
+*/
 
-  Route::post('api/routes','CourierController@saveRoutes');
+Route::post('api/routes','CourierController@saveRoutes');
 
 
 /** 
@@ -459,12 +460,11 @@ Route::get('api/v1/delivery/information',function(){
   $id = auth()->user()->id ; 
   $undeliveredStatus = 102;
 
-
   $parcels =  CustomerParcelDelivery::where([ 
     ['delivery_date', '=', $today],
     ['courier_id', '=', $id],
     ['delivery_status_code','=',$undeliveredStatus]
-    ])->get();
+  ])->get();
 
 
 
@@ -475,11 +475,11 @@ Route::get('api/v1/delivery/information',function(){
     $owner = $parcel->owner ; 
 
     $data[] = (object)[
-    'full_name' => $owner->first_name." ".$owner->middle_name." ".$owner->last_name,
-    'complete_address' => $owner->complete_address,
-    'lat' => $owner->lat ,
-    'lng' => $owner->lng ,
-    'mobile_phone' => $owner->mobile_phone
+      'full_name' => $owner->first_name." ".$owner->middle_name." ".$owner->last_name,
+      'complete_address' => $owner->complete_address,
+      'lat' => $owner->lat ,
+      'lng' => $owner->lng ,
+      'mobile_phone' => $owner->mobile_phone
 
     ];
 
@@ -723,16 +723,16 @@ Route::get('seed/statuses', function(){
     [  'status_code'   => 101, 'title' => 'Delivered', 'description' => 'Parcel is delivered to the user..'],
     [  'status_code'   => 102, 'title' => 'Undelivered', 'description' => 'Was not picked up or delivered' ],
     [ 
-    'status_code'   => 103, 
-    'title' =>'Pending', 
-    'description' =>'Put on Hold by the courier'
+      'status_code'   => 103, 
+      'title' =>'Pending', 
+      'description' =>'Put on Hold by the courier'
     ],
     [
-    'status_code'   => 104,
-    'title' =>'Left Warehouse',
-    'description' => 'Parcel is picked by the courier'
+      'status_code'   => 104,
+      'title' =>'Left Warehouse',
+      'description' => 'Parcel is picked by the courier'
     ]
-    ]); 
+  ]); 
 
 });
 /**
@@ -779,7 +779,7 @@ Route::get('test/sms',function(){
     'to'   => '639058185519',
     'from' => '639058185519 ',
     'text' => 'Ulsdjf'
-    ]);
+  ]);
 });
 
 
@@ -844,7 +844,7 @@ Route::post('chikka/post', function() {
         "secret_key" => $secret_key,
         "message_type" => "SEND",
         "message" => $message
-        );
+      );
       $postvars = http_build_query($post_data);
             // open connection
       $ch = curl_init();
@@ -912,25 +912,6 @@ Route::get('/home', function () {
   return view('index');
 });
 
-
-
-
-
-
-
-
-
-
-Route::get('tsp/optimap',function(){
-  return view('tsp-optimap');
-});
-
-
-
-
-Route::get('locate/me',function(){
-  return view('geolocation');
-});
 
 
 

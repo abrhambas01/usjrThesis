@@ -1,8 +1,8 @@
 <!doctype html>
 <!--
-  Built with Material Design 
-  Copyright 2015 Google Inc. All rights reserved.
+  Written for Mypharma.. built to last.. 
 
+  Made with Material Design with MDL and vuetify.. 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
@@ -19,8 +19,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="delivering free medicines with mpharma">
+	<meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	
 	<title>Welcome</title>
 
 	<!-- Add to homescreen for Chrome on Android -->
@@ -49,17 +50,17 @@
 <link rel="canonical" href="http://www.example.com/">
 -->
 
-	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-	
-	<link rel="stylesheet" href="{{ asset('css/iconfont/material-icons.css') }}">
-	{{-- using layouts with m --}}
-	<link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
 
-	<link rel="stylesheet" href="{{ asset('dist/css/styles.css') }} ">
+<link rel="stylesheet" href="{{ asset('css/iconfont/material-icons.css') }}">
 
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+<link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
 
-	<script src="{{ asset('js/material.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('dist/css/styles.css') }} ">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+
+<script src="{{ asset('js/material.min.js') }}"></script>
 
 <script>
 	window.App = {!! json_encode([
@@ -67,26 +68,14 @@
 		'user' => Auth::user(),
 		'signedIn' => Auth::check()
 		]) !!};
-	</script>
 
-	
+</script>
 </head>
 <body>
-    <!--
-    	Main Page is App.vue I just mounted it inside here..-->
-
-    	<div id="app"></div>
-
-
-    	<script src="{{ mix('js/app.js') }}"></script>
 
 
 
-    	{{-- Include when using jetpack template --}}
 
-    	{{-- <script src="{{ asset('dist/js/courier.js') }}"></script> --}}
-
-
-    	@yield('scripts')
-    </body>
-    </html>
+	<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>

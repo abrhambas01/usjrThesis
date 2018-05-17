@@ -1,4 +1,4 @@
-@extends('layouts.courier')
+@extends('layouts.courier2')
 
 @section('page-title', 'Home')
 
@@ -59,21 +59,7 @@
 
 
 
-	$(function(){
-
-
-		var url = '/api/v1/parcels/to-pack';
-
-		$.get('/api/v1/parcels/to-pack',function(data){
-			console.log(data);
-			
-			//append the content to the dom..
-			
-
-		});
-
-
-	});
+	
 
 </script>
 

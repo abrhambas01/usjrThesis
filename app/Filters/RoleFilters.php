@@ -11,7 +11,7 @@ class RoleFilters extends Filters
 
 	public function exceptAdmin(){
 		
-		$roles = Role::select ( 'id', 'name' )->whereIn('id',[2,3])->orderBy('name','desc')->get();
+		$roles = Role::select ('id','name')->whereIn('id',[2,3])->orderBy('name','desc')->get();
 		
 		return $roles ; 
 		

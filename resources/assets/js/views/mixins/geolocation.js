@@ -1,12 +1,10 @@
   
-// From TutorialsPoint
-
-
+// From TutorialsPoin
 export default function getCurrentPosition()
 {
 	if(navigator.geolocation){
            // timeout at 60000 milliseconds (60 seconds)
-           let options = options = {
+           let options = {
            	enableHighAccuracy: true,
            	timeout: 5000,
            	maximumAge: 0
@@ -24,16 +22,20 @@ export default function getCurrentPosition()
 }
 
 
-      function errorHandler(err){
-        if(err.code == 1) {
-         alert("Error: Access is denied!");
-       }
+export function errorHandler(err){
+  if(err.code == 1) {
+  
+     alert("Error: Access is denied!");
+  
+  }
 
-       else if( err.code == 2) {
-         alert("Error: Position is unavailable!");
-       }
+  else if( err.code == 2) {
 
-     }	
+   alert("Error: Position is unavailable!");
+  
+  }
+
+}	
 
      function showLocation(pos){
 

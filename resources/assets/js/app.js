@@ -1,17 +1,25 @@
-import './bootstrap';
+import './bootstrap'; 	
 
-import './components';
-
-
-
-import router   from './routes';
-
-import App from './views/App.vue';
+// import './components';
 
 
-/*When Using vuetify
+/** 
+'SPA Routes 
+
+**/
+import router from './routes';
+
+/**	Vuex Store 
+
+**/
+import store from './store';
+
+// import App from './views/App.vue';
+
+
+// When Using vuetify
 import Layout from './views/Layout.vue';
-*/
+
 
 
 /* When rendering the admin in vue.
@@ -25,8 +33,9 @@ import Layout from './views/Layout.vue';
 
 const app = new Vue({
 	el :'#app',
-	render: h => h(App),
-	router 
+	render: h => h(Layout),
+	router,
+	store
 });	
 
 

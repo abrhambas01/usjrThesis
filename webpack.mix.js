@@ -1,10 +1,18 @@
-let mix = require('laravel-mix');		
+let mix = require('laravel-mix'); 
+
 const path = require('path');
+
+
 
 
 // this should be included in the courier..
 
-mix.js('resources/assets/js/app.js', 'public/dist/js/');
+
+mix.js('resources/assets/js/app.js','public/js');
+
+
+// mix.js('resources/assets/js/test.js','public/js');
+
 
 
 // mix.js('resources/assets/js/es6.js','public/js');

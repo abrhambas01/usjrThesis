@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -9,10 +9,13 @@
 
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 
-
-                <router-link :to="{ name : 'toPack', params : { id : authUser.id } }" class="mdl-layout__tab">Parcels To Pack</router-link>
-                <router-link :to="{ name : 'startDelivery', params : { id : authUser.id } }" class="mdl-layout__tab">Delivery Map</router-link>
-                <router-link :to="{ name : 'account', params : { id : authUser.id } }" class="mdl-layout__tab">Account</router-link>
+                <router-link :to="{ name : 'Home' }" class="mdl-layout__tab">Home</router-link>
+                
+                <router-link :to="{ name : 'Parcels To Pack', params : { id : authUser.id } }" class="mdl-layout__tab">Parcels To Pack</router-link>
+                
+                <router-link :to="{ name : 'Start Delivery', params : { id : authUser.id } }" class="mdl-layout__tab">Map</router-link>
+                
+                <router-link :to="{ name : 'Account', params : { id : authUser.id } }" class="mdl-layout__tab">Account</router-link>
 
             </div>
         </header>
@@ -24,22 +27,25 @@
                     <span>{{ authUser.email }}</span>
                     <div class="mdl-layout-spacer"></div>
                     <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-
                         <i class="material-icons" role="presentation">arrow_drop_down</i>
                         <span class="visuallyhidden">Accounts</span>
                     </button>
+            
                     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+            
                         <li class="mdl-menu__item">Sign out</li>
+            
                     </ul>
+            
                 </div>
+            
             </header>
+
 
             <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
 
-      <!--           <router-link :to="{ name : 'courierHome', params : { id : authUser.id }}" class="mdl-navigation__link">Home</router-link>
-                <router-link :to="{ name : 'courierHome', params : { id : authUser.id }}" class="mdl-navigation__link">Home</router-link>
-                <router-link :to="{ name : 'courierHome', params : { id : authUser.id }}" class="mdl-navigation__link">Home</router-link>
-            -->
+                <router-link :to="{ name : 'Home' }" class="mdl-navigation__link">Home</router-link>
+
 
 <!-- 
                 <router-link :to="{ name : 'dashboard'} " class="mdl-navigation__link">
@@ -61,10 +67,11 @@
     </div>
 
     <main class="mdl-layout__content">
+
         <router-view></router-view>
 
-    
-  </main>
+
+    </main>
 
 </div>
 </template>
@@ -76,9 +83,15 @@ export default {
         return {
             pageTitle: 'Mypharma',
             
-
         };
     },
+
+    methods : {
+
+    }
+
+
+
 
 };
 
@@ -87,21 +100,21 @@ export default {
 
 <style>
 span.username {
-    font-size: 15px;
+font-size: 15px;
 }
 
 /*.mdl-layout__header {
-    background-color: #2779b3;
-    }*/
-    .mdl-layout__header{
-        background-color :#505050;
+background-color: #2779b3;
+}*/
+.mdl-layout__header{
+    background-color : #505050;
 
-    }
+}
 
-    .mdl-layout__tab-bar {
-        height: 46px;
+.mdl-layout__tab-bar {
+    height: 46px;
 
-    }
+}
 
 
-    </style>
+</style>

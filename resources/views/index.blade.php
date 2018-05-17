@@ -1,5 +1,5 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lte IE 9]>     <html lang="en" class="no-focus lt-ie10 lt-ie10-msg"> <![endif]-->
 <!--[if gt IE 9]><!--> <html lang="en" class="no-focus"> <!--<![endif]-->
 <head>
