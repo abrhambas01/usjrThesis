@@ -18,6 +18,8 @@ use App\Order ;
 
 use App\SeniorCitizenMedicine ; 
 
+use App\UserInformation ; 
+
 class AppController extends Controller
 {
 
@@ -60,7 +62,6 @@ class AppController extends Controller
 	public function userProfile($id)
 	{	
 		$user = User::with('info')->findOrFail($id);
-		
 		return view('account.show_profile',compact('user'));
 	}
 
@@ -158,6 +159,40 @@ class AppController extends Controller
 		return response($count) ;  
 	}
 
+	/**
+	 * Save users information .
+	 */
+	public function saveUsersInfo(Request $request,UserInformation $userInfo){
+		if($request->user_id !== Auth::user()->id) {
+			return response()->json('Unauthorized', 401);
+		}
+
+		$this->validate($request,[
+			'user_id' => 'required|numeric',
+			'first_name' => 'required|alpha',
+			'middle_name' => 'required|alpha',
+			'last_name' => 'required|alpha',
+			// 'picture' => 'required|mimes:jpeg,bmp,png,gif' ,
+			'work_address' => 'required',
+			'mobile_phone' => 'required',
+			'postal_code' => 'required' , 
+			'street_name' => 'required', 
+		]);
+
+		$user = Auth::user()->info()->update([
+			'first_name' => request('first_name'),
+			'middle_name' => request('middle_name'),
+			'last_name'=> request("last_name"),
+			'house_number' =>  request("house_number"),
+			'mobile_phone' => request("mobile_phone"),
+			'postal_code' => request("postal_code"),
+			'work_address' => request("work_address"),
+			'company' => request("company"),
+			'alternate_email' => request("alternate_email"),
+		]);
+
+		return response()->json($user);
+	}
 
 
 

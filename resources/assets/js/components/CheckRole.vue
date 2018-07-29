@@ -6,9 +6,7 @@
 					<select name="role_id" id="role_id" class="form-control" > 
 						<option :value="role.id" v-for="role in roles">{{ role.name }}</option>
 					</select>
-
 					<label for="material-select">Member Type</label>
-					
 				</div>
 			</div>
 		</div>

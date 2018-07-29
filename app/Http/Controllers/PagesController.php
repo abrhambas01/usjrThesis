@@ -10,6 +10,7 @@ class PagesController extends Controller
 	public function deliveryMap()
 	{
 		return view('courier.deliveries');
-	}
-	
+    }
+
+
 }

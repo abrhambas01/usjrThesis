@@ -16,14 +16,19 @@ After typing the following in the terminal
 
 ``` $ git clone  https://github.com/abrhambas01/usjrThesis```
 
-Ensure Npm is installed on the computer before doing the steps below. https://nodejs.org/en/download/ [64 bit installer is available](https://nodejs.org/dist/v8.10.0/node-v8.10.0-x64.msi)
+> Ensure Npm is installed on the computer before doing the steps below.
+
+* https://nodejs.org/en/download/ 
+* [64 bit installer is available](https://nodejs.org/dist/v8.10.0/node-v8.10.0-x64.msi)
+
+
 
 
 # Steps to Reproduce/ Start developing with this project 
 		Also Read the disclaimer below
 
 1. Install all composer dependencies in terminal with 
-` $ composer install`
+` $ composer install` 
 
 2. Install all node dependencies with
  `$ npm install` Or if yarn is installed `$ yarn install`
@@ -48,13 +53,9 @@ I changed the repo kay nagsamok ang mga commit daghan kau issues ang git.
 
 
 1. Codebase and Kenny Admin Template from Themeforest
-
 2. Material Design Lite by Google for giving us mobile template..
-
 3. Google Maps API (https://developers.google.com/maps/documentation/javascript/tutorial)
-
 4. Directions API https://developers.google.com/maps/documentation/directions/start
-
 5. From the folks at laracasts / stackoveflow /reddit and others..
 
 

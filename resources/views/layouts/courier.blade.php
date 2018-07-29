@@ -17,76 +17,80 @@
 -->
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="delivering free medicines with mpharma">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-	<title>Welcome</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Delivering Free medicines with Mypharma">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Welcome</title>
 
-	<!-- Add to homescreen for Chrome on Android -->
-	<meta name="mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
 
-	<link rel="icon" sizes="192x192" href="images/android-desktop.png">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
 
-	<!-- Add to homescreen for Safari on iOS -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	
-	<meta name="apple-mobile-web-app-title" content="Material Design Lite">
-	
-	<link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-	<!-- Tile icon for Win8 (144x144 + tile color) -->
-	<meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-	
-	<meta name="msapplication-TileColor" content="#3372DF">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
 
-	<link rel="shortcut icon" href="images/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
 
-	<!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-<!--
-<link rel="canonical" href="http://www.example.com/">
--->
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
-	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-	
-	<link rel="stylesheet" href="{{ asset('css/iconfont/material-icons.css') }}">
-	{{-- using layouts with m --}}
-	<link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
+    <meta name="msapplication-TileColor" content="#3372DF">
 
-	<link rel="stylesheet" href="{{ asset('dist/css/styles.css') }} ">
+    <link rel="shortcut icon" href="images/favicon.png">
 
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
 
-	<script src="{{ asset('js/material.min.js') }}"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
 
-<script>
-	window.App = {!! json_encode([
+    <link rel="stylesheet" href="{{ asset('css/iconfont/material-icons.css') }}">
+    {{-- using layouts with m --}}
+    <link rel="stylesheet" href="{{ asset('css/material.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('dist/css/styles.css') }} ">
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/animate.css@3.5.1/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+
+    @pwaManifest
+
+    <script src="set('js/material.min.js') }}"></script>
+
+    <script>
+        window.App = {!! json_encode([
 		'csrfToken' => csrf_token(),
 		'user' => Auth::user(),
 		'signedIn' => Auth::check()
-		]) !!};
-	</script>
+	])
+	!!};
+    </script>
 
-	
+
 </head>
 <body>
-    <!--
-    	Main Page is App.vue I just mounted it inside here..-->
+<!--
+    Main Page is Mypharma.vue I just mounted it inside here..-->
 
-    	<div id="app"></div>
-
-
-    	<script src="{{ mix('js/app.js') }}"></script>
+<div id="app"></div>
 
 
-
-    	{{-- Include when using jetpack template --}}
-
-    	{{-- <script src="{{ asset('dist/js/courier.js') }}"></script> --}}
+<script src="{{ mix('js/app.js') }}"></script>
 
 
-    	@yield('scripts')
-    </body>
-    </html>
+{{-- Include when using jetpack template --}}
+
+{{-- <script src="{{ asset('dist/js/courier.js') }}"></script> --}}
+
+
+@yield('scripts')
+</body>
+</html>

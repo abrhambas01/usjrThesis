@@ -42,12 +42,14 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, x) {
                         haa.splice(i, 1);
                     }
                 }
+                
                 var starttt = document.getElementById('autocomplete').innerHTML.split(",");
                 for (i = 0; i < starttt.length; i++) {
                     if (starttt[i] == ' Ho Chi Minh' && starttt[i + 1] == ' Vietnam') {
                         starttt.splice(i, 1);
                     }
                 }
+
                 for (i = 0; i < starttt.length; i++) {
 
                     if (starttt[i] == ' Vietnam') {

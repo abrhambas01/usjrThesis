@@ -19,6 +19,7 @@ use Debugbar ;
 use Storage ; 
 
 use Carbon\Carbon ; 
+
 use App\Medicine ; 
 
 class MedicinesController extends Controller
@@ -32,13 +33,9 @@ class MedicinesController extends Controller
      */
     public function index(MedicineQueries $query)
     {
-
         $medicines = $query->getAllInformation() ; 
-
         Debugbar::info($medicines);
-
         return view('admin.medicines.index',compact('medicines'));
-
     }
 
     /**

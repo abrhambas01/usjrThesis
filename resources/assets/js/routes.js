@@ -2,7 +2,7 @@ import VueRouter from 'vue-router';
 
 import Home from './pages/Home.vue';
 
-import Account from './pages/Account.vue' ; 
+import Account from './pages/Account.vue' ;
 
 import ToPack from './pages/ToPack.vue';
 
@@ -16,68 +16,97 @@ import StartDelivery from './pages/StartDelivering.vue';
 
 import DeliveryMap from './pages/DeliveryMap.vue';
 
-const routes = [ 		
-/**		
-Homepage for Courier
-*/
-{	
-	path : '/courier/:id/delivery/parcels-to-pack',
-	name: 'parcelsToPack', 
-	components :  { 
-		default : Delivery,
-		main : ToPack
-	}
-}, 
+import Address from './pages/Addresses.vue';
 
-{	
-	path : '/start-delivery',
-	name: 'startDelivery', 
-	components :  { 
-		default : Delivery,
-		main : StartDelivery
-	}
+const routes = [
+    /**
+     Homepage for Courier
+     */
+    {
+        path: '/delivery',
+        name: 'startDelivery',
+        component: Delivery,
+        children:
+            [
+                {
+                    path: '/addresses',
+                    name: 'Addresses',
+                    component: Address,
+                },
+                {
+                    path: '/to-pack',
+                    name: 'ToPack',
+                    component: ToPack
+                },
+                {
+                    path: '/deliveryMap',
+                    name: 'deliveryMap',
+                    // component: DeliveryMap
+                    component: StartDelivery
 
-	/**
+                },
+            ]
+    },
+    {
+        path: '/courier/:id/delivery/google-map',
+        name: 'googleMap',
+        components: {
+            default: Delivery,
+            main: DeliveryMap
+        }
+    },
 
-	 When redirecting to the route'
-	 **/
+    {
+        path: '/startDeliveryMap',
+        name: 'startDeliveryMap',
+        // component: DeliveryMap
+        component: StartDelivery
 
-
-	// redirect : { name : 'parcelsToPack'}
-},
-
-{
-	path : '/courier/:id/delivery/google-map', 
-	name : 'googleMap' , 
-	components :  { 
-		default : Delivery,
-		main : DeliveryMap
-	}
-},
-{
-	path : '/account', 	
-	name : 'Account',
-	component: Account
-}, 
-
-{ 
-	path : '/', 
-	name : 'home',
-	component : Dashboard
-},
+    },
 
 
+    {
+        path: '/account',
+        name: 'Account',
+        component: Account
+    },
+    {
+        path: '/',
+        name: 'home',
+        component: Dashboard
+    },
+    {
+        path: '/addresses',
+        name: 'addresses',
+        component: Address
 
-{
-	path : '* ',
-	name : 'pageNotFound',
-	component : PageNotFound , 
-},
+    },
+    {
+        path: '/to-pack',
+        name: 'toPack',
+        component: ToPack
 
+    },
+    {
+        path: '* ',
+        name: 'pageNotFound',
+        component: PageNotFound,
+    },
 ];
 
 export default new VueRouter({
-	routes,
-	mode : 'history',
-	linkActiveClass: 'is-active'
+    routes,
+    // mode : 'history',
+    linkActiveClass: 'is-active'
 });
+
+
+/**    Extra routes **/
+
+
+// {path: '/user',name: 'User', component: userPage,
+// children: [
+// {path: '/profile',name: 'Profile', component: profile},
+// {path: '/activity',name: 'Activity', component: activity},
+// ],
+// },

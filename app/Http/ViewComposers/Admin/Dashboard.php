@@ -4,8 +4,10 @@ use Auth;
 use Illuminate\View\View;
 use App\User ; 
 use Carbon\Carbon ;
-use App\Barangay ; 
-use App\Parcel ; 
+
+use App\Barangay ;
+use App\Parcel ;
+
 class Dashboard
 {
     /**
@@ -17,7 +19,9 @@ class Dashboard
     public function compose(View $view)
     {
         $couriers = User::couriers()->count();
+
         $sWorkers  = User::socialworkers()->count();
+
         $barangays =  Barangay::count() ;
 
         $today = Carbon::today() ; 
@@ -29,5 +33,6 @@ class Dashboard
            'sWorkers' => $sWorkers ,
            'deliveriesForToday' =>  $deliveriesForToday,
            'barangays' => $barangays]);
+        
     }
 }

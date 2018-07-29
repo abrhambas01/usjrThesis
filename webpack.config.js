@@ -1,16 +1,18 @@
 	
 /**
- * As our first step, we'll pull in the user's webpack.mix.js
- * file. Based on what the user requests in that file,
- * a generic config object will be constructed for us.
- */
- let path = require('path');
- let glob = require('glob');
- let webpack = require('webpack');
- let Mix = require('laravel-mix').config;
- let webpackPlugins = require('laravel-mix').plugins;
- let dotenv = require('dotenv');
-let SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin'); //Our magic
+* As our first step, we'll pull in the user's webpack.mix.js
+* file. Based on what the user requests in that file,
+* a generic config object will be constructed for us.
+*/
+let path = require('path');
+let glob = require('glob');
+let webpack = require('webpack');
+let Mix = require('laravel-mix').config;
+let webpackPlugins = require('laravel-mix').plugins;
+let dotenv = require('dotenv');
+let SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin'); /
+
+module.exports.plugins = plugins;
 
 
 plugins.push(
@@ -38,4 +40,5 @@ plugins.push(
 		],
 		importScripts: ['./js/push_message.js']
 	})
-);
+	);
+

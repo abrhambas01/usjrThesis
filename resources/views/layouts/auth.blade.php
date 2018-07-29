@@ -5,7 +5,9 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 	<title>Mypharma</title>
+	
 	<meta content="IE=edge" http-equiv="x-ua-compatible">
+
 	<meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="yes" name="apple-touch-fullscreen">
@@ -19,9 +21,6 @@
 	<link href=" {{ asset('css/fonts.css') }} " rel='stylesheet' type='text/css'>
 
 	<link rel="shortcut icon" href="{{ asset('assets/img/favicons/android-chrome-192x192.png') }} ">
-
-
-
 	<!-- Google Analytics -->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -38,51 +37,38 @@
 <body>
 	
 	<div id="main">
-
 		@yield('content')
-		
-
 	</div>
 
 
 	<script src="{{ asset('dist/js/courier.js') }}"></script>
-
 	<script src="{{ asset('dist/js/auth_functions.js') }}"></script>
-
-
-
 	<script>
-		// $(function(){
-		// 	function geolocate(){
+		$(function(){
 
-		// 		navigator.geolocation.getCurrentPosition(function (pos) {
-		// 			var lat = pos.coords.latitude;
+			function getLocation(){
+				navigator.geolocation.getCurrentPosition(function (pos) {
+					var lat = pos.coords.latitude;
+					var lng = pos.coords.longitude;
+					if (lat == null) {
+						// alert("GPS not activated!");
+						alert("Please turn on your location");
 
-		// 			var lng = pos.coords.longitude;
+					}
+					else{
+						alert("Please turn on your geolocation");
+						// alert("Latitude: "+ lat + " , Longitude: " + lng );
+					}
+				});
+			}
 
-		// 			if (lat == null) {
+			getLocation();
 
-		// 				alert("GPS not activated!");
-
-		// 			}
-
-		// 			else{
-
-		// 				alert("Latitude: "+ lat + " , Longitude: " + lng );
-
-		// 			}
-		// 		});
-
-		// 	}
-
-
-		// 	geolocate(); 
-		// });
-
+		});
 	</script>
 
 
-	
+
 	@yield('js')
 
 

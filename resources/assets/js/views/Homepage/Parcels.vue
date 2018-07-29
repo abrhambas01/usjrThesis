@@ -6,22 +6,14 @@
 		</div>
 
 		<div class="todo animated fadeinright delay-1" id="test1">
-			
-			<p 
-			v-if="parcels.length === 0 
-			? noParcelAlert() 
-			: welcomeAlert()">
+			<p v-if="parcels.length === 0 ? noParcelAlert() : welcomeAlert()"></p>
 
-		</p>
+			<p class="todo-element" v-for="(parcel,index) in parcels" :key="parcel.index">
+				<delivery-parcel :parcel="parcel" :index="index" :packed="packedStatus"></delivery-parcel>
+			</p>
 
-		<p class="todo-element" v-for="(parcel,index) in parcels" :key="parcel.index">
-			<delivery-parcel :parcel="parcel" :index="index"></delivery-parcel>
-		</p>
-
+		</div>
 	</div>
-
-
-</div>
 </template>
 
 <script>
@@ -30,7 +22,9 @@ import swal from 'sweetalert' ;
 
 import DeliveryParcel from './components/DeliveryParcels.vue' ; 
 
-export default {
+export default { 
+
+	components :  { DeliveryParcel },
 
 	name: 'Parcels',
 
@@ -43,58 +37,63 @@ export default {
 
 	computed  : { 
 
-		endpoint(){
-			return 'api/v1/parcels/to-pack' ; 
-		},
+		packStatus() {
+			return this.packed !== 0 
+   				  //this should return true if it's not 0, else return false
+				  // https://stackoverflow.com/questions/50853079/how-to-map-through-lodash-and-return-false-in-the-prop-value/50869166#50869166
+				}
 
-		packageQuantity(){
-			return this.parcels.length ; 
-		}	
+				endpoint(){
+					return 'api/v1/parcels/to-pack' ; 
+				},
 
-	},
+				packageQuantity(){
+					return this.parcels.length ; 
+				}	
 
-	methods : {
+			},
 
-		noParcelAlert() {
-			swal ( "Alert" ,  "No Deliveries for Today!" ,  "success" )
-		},
+			methods : {
 
-		welcomeAlert() {
-			swal ( "Alert" ,  "You have deliveries for today"  ,  "success" )
-		},
+				noParcelAlert() {
+					swal ( "Alert" ,  "No Deliveries for Today!" ,  "success" )
+				},
 
-		defaultAlert() {
-			swal ( "Alert" ,  "Retrieving your deliveries."  ,  "info" )
-		},
+				welcomeAlert() {
+					swal ( "Alert" ,  "You have deliveries for today"  ,  "success" )
+				},
 
-
-		fetch(){
-			axios.get(this.endpoint)
-			.then(response => this.parcels = response.data)
-			.catch(error => console.log(error.response.data));
-		} , 
-
+				defaultAlert() {
+					swal ( "Alert" ,  "Retrieving your deliveries."  ,  "info" )
+				},
 
 
-	},
+				fetch(){
+					axios.get(this.endpoint)
+					.then(response => this.parcels = response.data)
+					.catch(error => console.log(error.response.data));
+				} , 
+
+			},
 
 
-	mounted(){
+			mounted(){
 
-		this.fetch() ; 
+				this.fetch() ; 
 
-		this.defaultAlert();
+				this.defaultAlert();
 
-	},
+			},
 
 
-	components: { DeliveryParcel }
-};
+			components: { DeliveryParcel }
 
-</script>
+		};
 
-<style lang="css" scoped>
+		</script>
 
-.hero-header { margin-top : -10px ; } 
+		<style lang="css" scoped>
 
-</style>
+		.hero-header { margin-top : -10px ; } 
+
+		</style>

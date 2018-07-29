@@ -1,19 +1,22 @@
 <template>
 	<div>
-		<div class="demo-card-wide mdl-card mdl-shadow--2dp"  id="weather-card">
+		<div class="demo-card-wide mdl-card mdl-shadow--2dp" id="weather-card">
+
 			<div class="mdl-card__title">
 				<h2 class="mdl-card__title-text">Welcome {{ authUser.name }}</h2>
 			</div>
+
 			<div class="mdl-card__supporting-text">
-				<weather 
-				api-key="930c613a5c44c05a5e0d5c3052630b60"
+				<weather api-key="930c613a5c44c05a5e0d5c3052630b60"
 				title="Weather for Cebu City"
 				latitude="10.3157"
 				longitude="123.8854"
 				language="en"
 				units="uk">
-			</weather>
-		</div>
+				</weather>
+
+			</div>
+
 		<div class="mdl-card__actions mdl-card--border">
 			<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 				See weather 
@@ -46,8 +49,31 @@
 	</div>
 </div>
 
+<!-- <v-container grid-list-md text-xs-center>
+	<v-layout row wrap>
 
-</template>
+		<v-card>
+			<weather 
+			api-key="930c613a5c44c05a5e0d5c3052630b60"
+			title="Weather Card"
+			latitude="10.3157"
+			longitude="123.8854"
+			language="en"
+			units="uk">
+		</weather>
+
+		<v-card-actions>
+			<v-btn flat color="red">Share</v-btn>
+			<v-btn flat color="orange">Explore</v-btn>
+		</v-card-actions>
+
+
+
+	</v-card>
+</v-container>
+</v-layout>
+</v-flex>
+--></template>
 <script>
 import VueWeatherWidget from 'vue-weather-widget';
 
@@ -70,15 +96,14 @@ export default {
 	margin-top: 0px;
 	background-color : #FAFAFA;
 }
+
 #commit-chart {
 	margin-top : 4.7%;
 	width : 100% ;
 	background-color : #FAFAFA;
-
-
 }
 
 .mdl-button.mdl-button--colored {
-    color: #3b52ff;
+	color: #3b52ff;
 }
 </style>

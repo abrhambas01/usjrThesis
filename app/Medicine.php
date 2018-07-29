@@ -15,7 +15,6 @@ class Medicine extends Model
 		if ($image) {
 			return $this->location.$image;
 		}
-
 	}
 
 	

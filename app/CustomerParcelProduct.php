@@ -21,4 +21,5 @@ class CustomerParcelProduct extends Model
 	}
 
 
+
 }

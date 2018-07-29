@@ -3,13 +3,12 @@ use App\Medicine ;
 
 class Medicines extends Filters {
 
-
-	protected function filterBy($key)
+    protected function filterBy($key){
 
 		$results = Medicine::where('generic_name','like','$key%');
 
-	    return $results ;
-	
+		return $results ;
+		
 	}
 
 

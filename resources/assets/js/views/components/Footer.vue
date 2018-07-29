@@ -22,7 +22,6 @@
 				<a class="grey-text text-lighten-4 right" href="!">Privacy Policy</a>
 			</div>
 		</div>
-
 	</footer>
 	
 

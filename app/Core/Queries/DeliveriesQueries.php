@@ -25,7 +25,7 @@ class DeliveriesQueries {
 		// 	['courier_id','=',$id ],
 		// 	['delivery_date','=',$today]
 		// 	->select('customer_parcel_id'), 
-		// ])->get();
+		// ])->get();	
 
 
 	}
@@ -74,18 +74,14 @@ class DeliveriesQueries {
 
 
 		//Retrieve Data..
-
 	public function getDeliveryOwnersAddress()
 	{
 		$id = Auth::user()->courier->id ; 
-
 		$today = Carbon::today(); 
-
 		$deliveries = Parcel::with('owner')->where([ 
 			['courier_id','=',$id ],
 			['delivery_date','=',$today]
 		])->get() ; 
-
 
 		$parcelsData = array() ; 
 
@@ -101,12 +97,7 @@ class DeliveriesQueries {
 			] ;
 
 		}
-
-		// return $data;
 		return $parcelsData;
-
-
-		
 
 	}
 

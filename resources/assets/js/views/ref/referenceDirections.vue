@@ -73,7 +73,7 @@
         route: [],
         center: {lat: 45.0, lng: 20.4},
         markers: [{
-          position: {lat: 0, lng: 0}
+          position: {lat: 0, lng: 0}  
         },{
           position: {lat: 0, lng: 0}
         }]

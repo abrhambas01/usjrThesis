@@ -14,15 +14,11 @@ class CustomerParcel extends Model
 	{	
 		return $this->belongsToMany(SeniorCitizen::class,'senior_citizen_id') ; 
 	}
-	
-
 
 	public function deliveryInformation()
 	{	
 		return $this->belongsTo(CustomerParcelDelivery::class,'customer_parcel_id','customer_parcel_id') ; 
 	}
-
-
 
 	public function product()
 	{

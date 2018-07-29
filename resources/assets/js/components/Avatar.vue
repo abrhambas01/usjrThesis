@@ -6,7 +6,12 @@
 
     export default {
 
-        data(){
+        data() {
+            return {
+                imgSrc :  ""
+
+            }
+
 
         }
 

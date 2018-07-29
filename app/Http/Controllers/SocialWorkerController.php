@@ -1,19 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use \Cart as Cart;
-
 use Validator;
-
 use Exception;
-
 use Illuminate\Support\Facades\Redirect;
-
 use Illuminate\Support\Facades\Input;
 
 use Auth;
@@ -40,12 +32,12 @@ use DB;
 
 class SocialWorkerController extends Controller
 {
-  public function __construct(SeniorCitizen $seniorcitizen, Parcel $parcel, Courier $courier)
-  {
+    public function __construct(SeniorCitizen $seniorcitizen, Parcel $parcel, Courier $courier)
+    {
     $this->parcel = $parcel;
     $this->courier = $courier;
     $this->seniorcitizen = $seniorcitizen;
-  }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -56,8 +48,7 @@ class SocialWorkerController extends Controller
       $seniorcitizens = DB::table('seniorcitizens')
       ->select('id', 'first_name', 'last_name', 'gender', 'telephone', 'budget')
       ->where('barangay_id', '=', Auth::user()->barangay_id)
-      ->where('status', '=', 1)
-      ->get();
+      ->where('status', '=', 1)->get();
       
       return view('socialworker.index', compact('seniorcitizens'));
     }
@@ -80,7 +71,6 @@ class SocialWorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -358,7 +348,7 @@ class SocialWorkerController extends Controller
       ->where('medicine_id', $id)
       ->update(['status' =>1]);
 
-      return redirect()->back()->with('message', 'Updated');
+      return redirect()->back() ->with('message', 'Updated');
 
     }
 

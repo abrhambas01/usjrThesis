@@ -16,8 +16,8 @@ class Parcel extends Model
 	// protected $dates = 'delivery_date';
 
 
-	
-	public function medicines()
+
+    public function medicines()
 	{
 		return $this->belongsToMany(Medicine::class,'parcel_medicines','parcel_id','medicine_id')
 		 ->withPivot('qty'); 

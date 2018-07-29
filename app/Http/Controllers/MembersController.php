@@ -171,9 +171,10 @@ class MembersController extends Controller
         return response(['status' => 'Assign a barangay first.']); 
       }  
       else {
+
         $user = User::create(['name' => request('name'),
-          'email' =>  request('email'),
-          'password' => bcrypt(request('password')),
+                              'email' =>  request('email'),
+                              'password' => bcrypt(request('password')),
           'barangay_id' => request('barangay_id'), 
           'role_id' =>  request('role_id') ,
           'status'  =>  request('status')]);
@@ -226,6 +227,7 @@ class MembersController extends Controller
     {
 
       $note = request('note');
+
 
 
 

@@ -1,20 +1,18 @@
 <template>
-	<div>
-		<li>Ok</li>
-	</div>
+    <div>
+        <li>Ok</li>
+    </div>
 </template>
 
 <script>
-export default {
+    export default {
 
-  name: 'Tasks',
+        name: 'Tasks',
 
-  data () {
-    return {
-
+        data() {
+            return {};
+        }
     };
-  }
-};
 </script>
 
 <style lang="css" scoped>

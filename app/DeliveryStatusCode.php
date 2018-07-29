@@ -10,8 +10,6 @@ class DeliveryStatusCode extends Model
 
 	public $timestamps = false;
 
-
-
 	public function deliveryStatus() {
 		return $this->hasMany(Parcel::class);
 	}

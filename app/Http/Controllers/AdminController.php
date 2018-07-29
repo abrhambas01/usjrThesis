@@ -1,12 +1,22 @@
 <?php namespace App\Http\Controllers;
+
+
 use Illuminate\Http\Request;
+
 use App\User  ; 	
+
 use App\Barangay ; 
+
 use App\Medicine ; 
+
 use App\Role ; 
+
 use App\Dosage ; 
+
 use App\UserInformation ; 
+
 use App\Core\Traits\Stats ;
+
 
 
 class AdminController extends Controller
@@ -16,17 +26,15 @@ class AdminController extends Controller
 
 	public function account_profile(){
 		$id = auth()->user()->id;
+		
 		$member = User::find($id);
         // dd($user);
 		return view('admin.update_profile')->withMember($member);
 	}
 
 	public function renderDashboard() {		
-
 		$medicines = Medicine::select('id','name')->get();
-
 		return view('admin.dashboard',compact('couriers','sWorkers','barangay_count','medicines'));
-
 	}
 
 
@@ -55,8 +63,7 @@ class AdminController extends Controller
 
 
 	public function updateUserProfile(Request $request,$id) {
-
-		request()->validate([
+		request()->validate([	
 			'user_id' => 'required|numeric',
 			'middle_name' => 'alpha',
 			'last_name' => 'required|alpha',
@@ -77,13 +84,13 @@ class AdminController extends Controller
 
 		$users_info->save();
 
-		if (request()->wantsJson()) {
+		if (request()->wantsJson()){
 			return response($thread, 201);
 		}
 
 		return redirect($thread->path())
 		->with('flash', 'Your thread has been published!');
-	
+		
 
 	}
 

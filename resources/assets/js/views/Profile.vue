@@ -7,6 +7,7 @@
 				<img class="avatar" src="assets/img/avatars/default.jpg" ></img>
 				<h2 class="white-text m-0">{{ user.name }}</h2>
 				<p class="white-text m-0">Courier.</p>
+				
 				<router-link to="/update/cover_photo" tag="li" class="waves-effect waves-light btn primary-color m-20" >
 					Update Cover Photo
 				</router-link>
@@ -83,8 +84,6 @@
 	</template>
 
 <script>
-
-
 export default {
 
 	name: 'Profile',

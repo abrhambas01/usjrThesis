@@ -12,7 +12,7 @@
 	</div>
 
 	<div class="col-6 col-md-4 col-xl-2">
-		<a href="" class="block text-center" data-toggle="modal" data-target="#addUserModal">
+		<a href="/new-user" class="block text-center" data-toggle="modal" data-target="#addUserModal">
 			<div class="block-content bg-gd-primary">
 				<p class="mt-5">
 					<i class="si si-plus fa-3x text-white-op"></i>
@@ -25,7 +25,7 @@
 	<div class="col-6 col-md-4 col-xl-2">
 		<a class="block text-center">
 			<div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
-				<div class="ribbon-box">{{ $couriers }} </div>
+				<div class="ribbon-box">{{ $couriers }}</div>
 				<p class="mt-5">
 					<i class="si si-basket fa-3x text-white-op"></i>
 				</p>
@@ -33,6 +33,7 @@
 			</div>
 		</a>
 	</div>
+
 	<div class="col-6 col-md-4 col-xl-2">
 		<a class="block text-center" href="#" data-toggle="modal" data-target="#addMedicineModal">
 			<div class="block-content bg-gd-lake">
@@ -55,8 +56,6 @@
 			</div>
 		</a>
 	</div>
-
-
 
 
 	<div class="col-6 col-md-4 col-xl-2">

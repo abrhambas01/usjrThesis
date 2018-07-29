@@ -1,23 +1,23 @@
 <?php
+
+
+/**
+ * @created by : Abrham Bas
+ * API is built for Mypharma project.
+ */
+
 namespace App\Http\Controllers;
-
 use App\Core\Traits\RetrievesRecords;
-
 use App\SeniorCitizen;
-
 use App\CustomerParcelDelivery;
-
 use Auth ; 
-
+use DB ; 
 use Carbon\Carbon ;
-
 use App\Core\Queries\DeliveriesQueries ; 
-
 use App\Core\Queries\ChartsQueries ; 
-
 use Request  ;
-
 use App\Parcel ; 
+use App\User ;
 
 
 class CourierController extends Controller {
@@ -28,6 +28,8 @@ class CourierController extends Controller {
     // $deliveriesForToday = 
     return view('courier')->with('username',Auth::user()->name);
   }
+
+
 
 
   public function couriersHomePage(){
@@ -41,8 +43,6 @@ class CourierController extends Controller {
     app('debugbar')->disable();
     return view('courier');
   }
-
-
 
   
   public function getTodaysDeliveries()
@@ -64,31 +64,30 @@ class CourierController extends Controller {
   | Description:    Gets the parcels to be delivered. then pack it then mark if check or do not check..
   | Parameters: NONE ..
   */
-  public function getTodaysParcelsToPack($id)
+  public function getTodaysParcelsToPack()
   {
     // $parcels = $query->getParcelsForChecking($courier_id);
-
     $today = Carbon::today(); 
 
-    // $id = auth()->user()->courier->id ;  
-
+    $id = auth()->user()->courier->id ;  
 
     $customer_parcel = Parcel::with('owner')
     ->join('parcel_medicines','parcels.id','=','parcel_medicines.parcel_id')->where([ 
       ['courier_id','=',$id ],
+      ['packed','=','0'],
       ['delivery_date','=',$today]])
     ->get()
     ->groupBy('parcel_id');
 
     return response()->json($customer_parcel) ;
-    
-  } 
 
+
+  } 
 
 
   /*
   |-------------------------------------------------------------------------------
-  | Marks the parcels to be packed as checked 
+  | Marks the parcels to be packed as checked [ OFFICIAL API USED.]
   |-------------------------------------------------------------------------------
   | URL:            api/v1/parcels/markAsCheck/{id}
   | Method:         POST
@@ -96,23 +95,21 @@ class CourierController extends Controller {
   | Parameters:
   |   $id   -> ID of the user's authenticated..
   */
-  public function markasCheck($id)
-  {
-    $result = Parcel::find($id);
-    $result->packed = '1' ;
-    $result->save() ; 
-  }
-
-
-
 
   public function updateParcelStatus($id)
   {
     $result = Parcel::find($id);
-    $result->packed = '1' ;
+
+    if ($result->packed == 0 ) {
+      $result->packed = 1;
+    }
+    else {
+      $result->packed = 0 ;
+    }
     $result->save() ; 
   }
-    /*
+
+   /*
   |-------------------------------------------------------------------------------
   | Marks the parcels to be packed as not yet packed 
   |-------------------------------------------------------------------------------
@@ -125,21 +122,43 @@ class CourierController extends Controller {
   public function markasUncheck($id)
   {
     $result = Parcel::find($id);
-
     $result->packed = '0' ;
-    
     $result->save() ; 
   }
 
+
+
+  public function deliveryAddresses(){
+
+
+    $today = Carbon::today(); 
+
+    $id = auth()->user()->courier->id ;  
+
+      // ->join('parcel_medicines','parcels.id','=','parcel_medicines.parcel_id')
+    $customer_parcel = DB::table('parcels')->join('seniorcitizens','seniorcitizens.id','=','parcels.seniorcitizen_id')  
+    ->where([ 
+      ['courier_id','=',$id],
+      ['delivery_date','=',$today]])
+    ->select("address as address","lat as lat","lng as lng","parcels.id as id")
+    ->get();
+    // ->groupBy('parcel_id');
+
+    // ->select('owner.address as address','owner.lat as lat','owner.lng as lng')
+    
+    return response()->json($customer_parcel);
+  }
 
   public function saveRoutes(Request $request)
   {
     // $parcels = $query->getParcelsForChecking($courier_id);
 
 
-
-    return response()->json($request);    
+       return response()->json($request);
   } 
+
+
+
 
 
 
@@ -150,14 +169,11 @@ class CourierController extends Controller {
 
   }
 
-  public function getCurrentUserInformation(DeliveriesQueries $query)
+  public function getCurrentUserInformation()
   {
-    $parcels = $query->retrieveTodaysDeliveries();
-
-    // return response()->json($parcels);
-
-    return $parcels;
-
+    $userId = Auth::user()->id ;
+    $usersInfo =  auth()->user()->info ;  
+    return response()->json($usersInfo);
   } 
 
 
@@ -173,12 +189,8 @@ class CourierController extends Controller {
   } 
 
   public function getDeliveriesInformation(DeliveriesQueries $query){
-
     $owner = $query->getDeliveryOwnersAddress() ;
-
     return response()->json($owner);
-
-
     // return response()->json($parcels);
   } 
 
@@ -199,7 +211,7 @@ class CourierController extends Controller {
   {
 
     $id = auth()->user()->id ; 
-    $queryCount = DB::raw(count()) ; 
+    // $queryCount = DB::raw(count()) ; 
 
   }
 

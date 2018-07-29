@@ -39,7 +39,7 @@
                         <div class="form-material">
 
                             {{ Form::label('facebook_profile', "Facebook Profile") }}
-
+                            
                             {{ Form::text('facebook_profile', null, ['class' => 'form-control']) }}
 
                             

@@ -13,7 +13,6 @@ class OrdersDeliveryTable extends Migration
      */
     public function up()
     {
-        
         Schema::create('customer_orders_delivery', function (Blueprint $table) {
 
             $table->integer('customer_order_id')->unsigned();

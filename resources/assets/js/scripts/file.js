@@ -117,21 +117,36 @@ function addList(listStr) {
 
 
 function addWaypoint(latLng, label) {
+
 	var freeInd = -1;
+	
 	for (var i = 0; i < waypoints.length; ++i) {
+	
 		if (!wpActive[i]) {
+	
 			freeInd = i;
+	
 			break;
+	
 		}
+	
 	}
 	if (freeInd == -1) {
+
 		if (waypoints.length < maxTspSize) {
+
 			waypoints.push(latLng);
+
 			labels.push(label);
+
 			wpActive.push(true);
+
 			freeInd = waypoints.length-1;
+
 		} else {
+
 			return(-1);
+			
 		}
 	} else {
 		waypoints[freeInd] = latLng;

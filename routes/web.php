@@ -1,11 +1,11 @@
 <?php
 /*
-
 ---------------------------------------------------------------------------
 | MYPHARMA ROUTE ENDPOINTS..
 | Project ; Mypharma
-  Purpose : for IT PROJECT
+| Purpose : for IT PROJECT
 | /@tagudearl, @abrhamabas02 @jercmacsero
+| 
 |
 -------------------------------------------------------------------------------
 */
@@ -14,64 +14,52 @@
 use App\Events\MemberIsAdded;
 use App\Events\MemberDeleted;
 use App\SeniorCitizen ; 
-
-
 use App\CustomerParcelDelivery; 
-
 use App\Dosage; 
 use Carbon\Carbon; 
+
 //Add the Middleware soon auth and admin here only admin can access this. 
 
 
 
 Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function () {    
 // Route::group(['prefix' => 'admin'], function () {
-  Route::get('dashboard', 'AdminController@renderDashboard')->name('admin.dashboard');
+    Route::get('dashboard', 'AdminController@renderDashboard')->name('admin.dashboard');
 
-  Route::resource('members','MembersController') ;
+    Route::resource('members','MembersController') ;
+    Route::put('/update/status','MembersController@updateStatus')->name('admin.updateStatus');
 
-  Route::put('/update/status','MembersController@updateStatus')->name('admin.updateStatus');
+    Route::get('members/delete','MembersController@destroy')->name('members.destroy') ;
 
+      //Shows Realtime Transactions..
+    Route::get('transactions/realtime', 'AdminController@showRealTimeTransactions')->name('showTransactions') ; ;
 
-  Route::get('members/delete','MembersController@destroy')->name('members.destroy') ; 
+      // Route::get('transaction/{id}', 'AdminController@showTransaction')
 
-        //Shows Realtime Transactions..
-  Route::get('transactions/realtime', 'AdminController@showRealTimeTransactions')->name('showTransactions') ; ;
+      // Deliveries Realtime
+    Route::get('realtime/deliveries', 'AdminController@showTransaction')->name('deliveries.realtime') ;
 
-        // Route::get('transaction/{id}', 'AdminController@showTransaction')
-
-        // Deliveries Realtime
-  Route::get('realtime/deliveries', 'AdminController@showTransaction')->name('deliveries.realtime') ; 
-
-  Route::get('members/couriers',
+    Route::get('members/couriers',
     [
-      'as' => 'members.couriers' , 
+      'as' => 'members.couriers' ,
       'uses' =>    'MembersController@couriers'
     ]);
 
-  Route::get('members/social-workers', [  'as' => 'members.socialworkers',   'uses' => 'MembersController@socialworkers']);
+    Route::get('members/social-workers', [  'as' => 'members.socialworkers',   'uses' => 'MembersController@socialworkers']);
 
 
-  Route::resource('medicines','MedicinesController');
+    Route::resource('medicines','MedicinesController');
 
-  Route::get('profile/update ','AdminController@account_profile')->name('updateProfileForm');
+    Route::get('profile/update ','AdminController@account_profile')->name('updateProfileForm');
+    Route::post('profile/update/{id}','AdminController@updateUserProfile')->name('updateProfile');
+    Route::resource('barangays','BarangaysController');
+    Route::post('/create/note/{id}','MembersController@postNote')->name('notes.create');
+    Route::get('account/profile/id={id}','AppController@userProfile')->name('user.profile');
+    Route::post('submit/profile/{id} ','AppController@userProfile')->name('updateUserProfile');
 
-  Route::post('profile/update/{id}','AdminController@updateUserProfile')->name('updateProfile');
+    Route::get('api/v2/email', 'MembersController@emailduplicate')->name('email.getDuplicate');
 
-  Route::resource('barangays','BarangaysController');
-
-  Route::post('/create/note/{id}','MembersController@postNote')->name('notes.create');
-
-  Route::get('account/profile/id={id}','AppController@userProfile')->name('user.profile');
-
-  Route::post('submit/profile/{id} ','AppController@userProfile')->name('updateUserProfile');
-
-  Route::get('api/v2/email', 'MembersController@emailduplicate')->name('email.getDuplicate');
-
-
-  Route::get('profile/upload/photo/{id}','AppController@adminProfilePhoto')->name('changeAdminPhoto');
-
-
+    Route::get('profile/upload/photo/{id}','AppController@adminProfilePhoto')->name('changeAdminPhoto');
 
 });
 
@@ -79,14 +67,20 @@ Route::group(['middleware'=> ['auth','isAdmin'], 'prefix' => 'admin'], function 
 /*
 
 
-******************
+******
+*******
+***
+**
 Social Worker Routes Starts here
-******************
+****
+**************
 
 */
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'socialworker'], function() {
+
   Route::resource('socialworker', 'SocialWorkerController');
+
   Route::get('dashboard', ['as' => 'socialworker.dashboard',
     'uses' => 'SocialWorkerController@index']);
 
@@ -142,11 +136,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'socialworker'], function() 
     'uses' => 'SocialWorkerController@updateSeniorCitizenProfile']);
 
 
-
-
-
-
-
 });
 
 
@@ -156,8 +145,8 @@ Route::post('text',function(){
     $apicode = TR-MYPHA152063_N2J9P  ;
 
     $number = '09332998610' ; 
-    $message = 'OK' ; 
 
+    $message = 'OK' ; 
 
     $ch = curl_init();
 
@@ -192,7 +181,7 @@ Route::post('text',function(){
       http_build_query($itexmo));
     
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     return curl_exec ($ch);
 
     curl_close ($ch);
@@ -219,15 +208,12 @@ Route::get('sms/itextmo',function(){
 });
 
 
+
 /*
 
 ******************
-
-
 Courier Routes Starts here
-
-
-******************
+*****************
 
 
 */
@@ -237,17 +223,6 @@ Route::group(['middleware' => ['auth', 'isCourier']], function () {
   // Route::get('/', 'CourierController@dashboard')->name('courier.dashboard');
 
   Route::get('/', 'CourierController@home')->name('courier.dashboard');
-
-
-
-});
-
-
-Route::get('/mapping',function(){
-
-  return view("layouts.courier2");
-
-});  
 /*
 other courier routes
 
@@ -259,15 +234,46 @@ Route::get('courier/dashboard','CourierController')->name('')
 */
 
 
-  /*
-  |-------------------------------------------------------------------------------
+
+});
 
 
-  C O N S U M A B L E API's.. in mypharma
-  Version 1 =>  api/v1
+/**
+ * Using material design lite.. 
+ */
 
-  |-------------------------------------------------------------------------------
+Route::get('/mapping',function(){
 
+  app('debugbar')->disable();
+  return view("layouts.courier2");
+
+});  
+
+
+
+/**
+ * All users common tasks like updating the users profile.
+ */
+
+
+Route::put("update/profile","AppController@saveUsersInfo");
+
+
+
+/*
+|-------------------------------------------------------------------------------
+
+
+C O N S U M A B L E   API's
+
+
+Built for Mypharma
+
+03 / 18 / 2018 -- > update to july 2018.. Sorry for delay. nabusy lang
+
+Version 1 =>  api/v1
+
+|-------------------------------------------------------------------------------
 
 */
 
@@ -288,12 +294,8 @@ packages information.. parcel_id
 
 medicine_number - quantity(pcs)
 owner_name 
-
-
 */
-
-
-Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->name("api.deliveries");
+Route::get('api/v1/parcels/to-pack','CourierController@getTodaysParcelsToPack')->name("api.deliveries");
 
 
 /*
@@ -306,16 +308,11 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
   Actor :         courier
 | Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
       Returns lat , lng , owners_information.. 
-
-
 */
+Route::get('api/v1/parcels','CourierController@getDeliveriesInformation')->name('api.deliveries');
 
-  Route::get('api/v1/parcels','CourierController@getDeliveriesInformation')->name('api.deliveries');
 
-
-/** 
-
-  /*
+/*
   |-------------------------------------------------------------------------------
   | Get All information of the senior_citizens who will receive todays deliveries..
   |-------------------------------------------------------------------------------
@@ -325,8 +322,7 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
     Actor :         courier
   | Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
   */
-
-  Route::get('api/v1/deliveries/information','CourierController@getDeliveriesInformation')->name('api.deliveries');
+Route::get('api/v1/deliveries/information','CourierController@getDeliveriesInformation')->name('api.deliveries');
 
 
   /*
@@ -340,7 +336,7 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
   | Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
   */  
 
-  Route::post('api/parcel/check/{id}','CourierController@updateParcelStatus');
+  Route::post('api/v1/parcel/{id}/toggle','CourierController@updateParcelStatus');
 
 
   /*
@@ -354,7 +350,24 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
     Actor :         courier
   | Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
   */  
-  Route::post('api/parcel/uncheck/{id}','CourierController@markasCheck');
+Route::post('api/parcel/uncheck/{id}','CourierController@markasCheck');
+
+
+
+  /*
+  |-------------------------------------------------------------------------------
+  | Gets the authenticated users information if there is any.. 
+  |-------------------------------------------------------------------------------
+  | URL:            /#/account
+  | Controller:     CourierController@updateParcelStatus
+  
+  | Method:        Get
+    Actor :         courier
+  | Description:    Gets couriers basic information..
+  */  
+
+Route::get('api/v1/courier/information','CourierController@getCurrentUserInformation');
+
 
 
   /*
@@ -368,7 +381,7 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
   | Description:    Gets parcels to be delivered then to be checked if it is packed by the courier..
   */  
 
-  Route::post('api/parcel/{id}/state','CourierController@markAsUncheck');
+Route::post('api/parcel/{id}/state','CourierController@markAsUncheck');
 
 
 /*
@@ -385,6 +398,19 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
 
 
 
+/* Tracked..
+  |-------------------------------------------------------------------------------
+  | Returns the addresses / locations of the user..
+  |-------------------------------------------------------------------------------
+  | URL:            /#/pickup/parcels
+  | Controller:     CourierController@updateParcelStatus
+  | Method:         GET
+    Actor :         courier
+  | Description:    Returns the addresses of the user
+  */  
+  Route::get("/api/v1/delivery-addresses",'CourierController@deliveryAddresses');
+
+
 /*
 |-------------------------------------------------------------------------------
 | Sends API Routes Data
@@ -399,11 +425,6 @@ Route::get('parcels/to-pack/{id}','CourierController@getTodaysParcelsToPack')->n
 Route::post('api/routes','CourierController@saveRoutes');
 
 
-/** 
-
-Returns all senior_citizens (response in json)..  
-
-**/
 
 Route::get('api/v1/senior_citizens',function(){
   $parcels = SeniorCitizen::all();
@@ -432,10 +453,6 @@ Route::get('/roles','AppController@getRoles');
                 Charts 
 |-------------------------------------------------------------------------------
 /*
-
-
-
-
 |-------------------------------------------------------------------------------
 | Gets Information for the charts..
 |-------------------------------------------------------------------------------
@@ -492,8 +509,7 @@ Route::get('api/v1/delivery/information',function(){
 
 
 
-/** 
-
+/**
 Widgets for Administrators 
 returns stats of the applications.. 
 */
@@ -585,7 +601,10 @@ Route::get('api/v1/sms-recipients',function(){
 
 
 
-
+/**
+ *
+ *Return social workers
+ */
 
 Route::get('api/v1/social-workers','AdministratorController@getSocialWorkers');
 
@@ -891,7 +910,7 @@ Route::get('login', ['as' => 'login', 'uses' => 'AuthController@showLoginForm'])
 
 
 /**
- * 
+* 
  * Another login form for mobile.. using mdl
  */
 Route::get('auth/login','AuthController@loginFormTest') ;
@@ -909,7 +928,13 @@ Route::get('logout', 'AuthController@logout');
 
 
 Route::get('/home', function () {
-  return view('index');
+  // return view('index');
+
+  /**
+   * WHen using the free template
+   */
+  return view('index2');
+
 });
 
 
@@ -951,17 +976,10 @@ Route::get('log/cour',function(){
 });
 
 /**
-
 Hot Module Replacement Test
-
 **/
-
-
 Route::get('/hmr',function(){
-
   return view('some_file');
-
-
 });
 
 

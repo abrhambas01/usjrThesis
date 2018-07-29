@@ -1,6 +1,4 @@
 <template>
-
-
   <div>
     <div class="floating-button animated bouncein delay-3">
       <a class="btn-floating btn-large waves-effect waves-light accent-color btn z-depth-1">
@@ -11,24 +9,18 @@
     :center="center" 
     style="width: 100%; height: 100vh;" :options="mapOptions">
 
-      <gmap-marker 
-      :key="index" 
-      :icon="'http://localhost/dist/img/marker.png'"
-      v-for="(m, index) in markers"
-      :position="center = m.position" 
-      :clickable="true" :draggable="true" @click="center=m.position">
+    <gmap-marker 
+    :key="index"
+    :icon="'http://localhost/dist/img/marker.png'"
+    v-for="(m, index) in markers"
+    :position="center = m.position" 
+    :clickable="true" :draggable="true" @click="center=m.position">
 
 
-    </gmap-marker>
+  </gmap-marker>
 
-  </gmap-map>
+</gmap-map>
 </div>
-
-
-
-</div>
-
-
 </template>
 
 <style>

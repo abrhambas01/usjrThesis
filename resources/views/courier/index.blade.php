@@ -15,8 +15,7 @@
 			<a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
 		</div>
 	</div>
-	<div class="demo-separator mdl-cell--1-col"></div>
-	
+	<div class="demo-separator mdl-cell--1-col"></div>	
 </div>
 <div class="page animated fadeinright">
 	<div class="hero-header bg-5 animated fadeinright">

@@ -1,25 +1,34 @@
 let mix = require('laravel-mix'); 
 
+// let tailwindcss = require('tailwindcss');
+
 const path = require('path');
 
 
 
 
-// this should be included in the courier..
 
+// this should be included in the courier..
+// mix.js('resources/assets/js/auth.js','public/js')
 
 mix.js('resources/assets/js/app.js','public/js');
 
 
-// mix.js('resources/assets/js/test.js','public/js');
+// mix.js('resources/assets/js/scripts/test.js','public/js');
 
 
+// mix.postCss('resources/assets/main.css', 'public/css', [
+// 	tailwindcss('./tailwind.js'),
+// 	]);
 
-// mix.js('resources/assets/js/es6.js','public/js');
 
-// mix.browserSync({
-// 	proxy: 'localhost:3000'
-// });	
+/**
+
+USING Browsersync
+
+**/
+
+// mix.browserSync('localhost:8000/home');	
 
 // run versioning on production only
 if (mix.inProduction()) {

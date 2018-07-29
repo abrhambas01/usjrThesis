@@ -2,15 +2,16 @@
 <tr>
 
 	<td class="text-center">{{ $medicine->treatmentFor }} </td>
+
 	<td class="text-center">{{ $medicine->medicine_name }} </td>
+
 	<td class="text-center">{{ $medicine->form }} </td>
+
 	<td class="text-center">{{ $medicine->price }} </td>
 
-	@if (is_null($medicine->picture))
+	@if(is_null($medicine->picture))
 	
-	<td class="text-center"><img height="75" width="75" src="{{ asset('storage/medicines/leAoShtaopeS9SrAYvygBbWvzaDSvLOtEsAqhJZI.jpeg') }}" alt=""> 	
-
-	</td>
+	<td class="text-center"><img height="75" width="75" src="{{ asset('storage/medicines/leAoShtaopeS9SrAYvygBbWvzaDSvLOtEsAqhJZI.jpeg') }}" alt=""></td>
 	@else
 
 	<td class="text-center"><img src="{{ asset('storage/'.$medicine->picture) }}" height="75" width="75" alt=""> </td>

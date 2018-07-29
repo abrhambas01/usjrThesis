@@ -19,6 +19,7 @@ class AuthController extends Controller
 
 	public function loginFormTest()
 	{
+
 		return view('auth.login-form');
 	}
 }

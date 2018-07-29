@@ -2,11 +2,7 @@
 
 
 This
-
-
 file is
-
-
 responsible for the basic operations of the Medicine Table
 
 */

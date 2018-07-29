@@ -126,7 +126,6 @@ export default {
 		initializeMap(){
 			GMaps.geolocate({
 				success: function(position) {
-
 					var options = { 
 						center: {lat: position.coords.latitude, lng: position.coords.longitude},
 						zoom: 20,

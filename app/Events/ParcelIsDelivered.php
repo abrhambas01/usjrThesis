@@ -22,7 +22,6 @@ class ParcelIsDelivered implements ShouldBroadcast
      */
     public function __construct($parcel)
     {
-
         $this->parcel = $parcel ; 
     }
 

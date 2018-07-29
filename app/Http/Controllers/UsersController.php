@@ -92,15 +92,14 @@ class UsersController extends Controller
 	}
 
 
-	public function checkseniorcitizenid(Request $request){
-		$id = $request->get('id') ; 
+	public function checkseniorcitizenid($id){
 		$msg = ''; 
-		$count = DB::table('senior_citizens_rosters')->where('id',$id)->count() ; 
+		$count = DB::table('seniorcitizens')->where('id',$id)->count() ; 
 		if ($count >= 1){ 
 			$msg = 'Senior citizen ID is already been taken' ; 
 		}
 		else if($count == 0 ){
-			$msg = 'Senior Citizen ID was available' ; 
+			$msg = 'Senior Citizen ID was not available' ; 
 		}
 		return response()->json(['count' => $count,'message' => $msg]) ;  
 

@@ -1,0 +1,248 @@
+<h3>Earl ang mga files para mogana ni siya kay naa's resources/assets folder.
+
+  first open sa mypharma.vue file by pressing Ctrl/cmd og letter P type Mypharma.vue
+
+
+  gagamit ko'g vue.js ani nga app kay wa na ko'y lain nahibaw-an nga mo provide og single page app experience like Vue.js or React pero mas dali ning Vue  kay di na ta magkat-on og JSX so kani lang ta.  
+
+  so basically magkat-on mo'g gamay sa Vue ani.
+
+  Gagamit ko'g vuetify ani so type lang vuetifyjs.com sa inyo browser para magkat-on
+
+
+
+
+</h3>
+
+TODOS : 
+
+
+
+
+
+For PWA experience basically do this : 
+
+1. Service Workers for Offline State.
+2. 
+
+
+
+
+<div id="app">
+  <v-app>
+    <v-navigation-drawer app v-model="drawer">
+      <v-list>
+        <v-list-tile to="/">
+          Home
+        </v-list-tile>
+        <v-list-tile :to="{path: '/profile'}">
+          User Profile
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-content>
+      <v-container>
+        Current Path:  {{ $route.path }} 
+        <router-view></router-view>
+      </v-container>
+    </v-content>
+  </v-app>
+</div>
+
+
+
+
+
+
+JS :
+
+
+Vue.use(VueRouter)
+
+let homePage = {
+template:`<div class="title">Home page</div>`
+}
+let userPage = {
+template:`
+<div>
+  <div class="title">User page</div>
+
+  <v-tabs v-model="activeTab">
+   <v-tab to="profile">Profile</v-tab>
+   <v-tab to="activity">Activity</v-tab>
+ </v-tabs>
+
+ <v-tabs-items v-model="activeTab">
+  <v-tab-item id="profile">
+    <router-view></router-view>
+  </v-tab-item>
+  <v-tab-item id="activity">
+    <router-view></router-view>
+  </v-tab-item>
+</v-tabs-items>
+</div>
+`,
+data: () => ({
+activeTab: "",
+}),
+}
+
+let profile = {
+template:`<div>Profile Tab Content</div>`
+}
+let activity = {
+template:`<div>Activity Tab Content</div>`
+}
+
+let router = new VueRouter({
+routes: [
+{path: '/',name: 'Home',component: homePage,},
+{path: '/user',name: 'User',component: userPage,
+children: [
+{path: '/profile',name: 'Profile',component: profile},
+{path: '/activity',name: 'Activity',component: activity},
+],
+},
+]
+})
+
+new Vue({
+el: '#app',
+router,
+data: () => ({
+drawer:true,
+})
+})
+
+
+
+
+
+
+
+
+
+
+
+/** Addreses.vue ** /
+
+//     created(){
+//   // this.geocodedAddress();
+// }
+
+
+// return 'An Address that is in string.. ->
+// return 'An Address that is in string.. ->  geocoded address';
+//     geocodedAddress () {
+//      var self = this;
+
+//      let geocoder = new google.maps.Geocoder();
+
+//      let theLocations = this.addresses ;
+
+//      return Promise.all(_.map(theLocations, addr => {
+//       var geocoder = new google.maps.Geocoder();
+
+//       var locationss = {
+//         lat : parseFloat(addr.lat),
+//         lng : parseFloat(addr.lng)
+//       } ;
+
+//     // var sampleLocation = { lat: 1.39, lng: 103.8 };
+
+//     return new Promise(function(resolve, reject) {
+//       geocoder.geocode({'location': locationss }, function(results, status){
+//         if (status === 'OK') {
+//           if (results[0]) {
+//             this.formattedAddress = results[0].formatted_address;
+//           } else {
+//             console.log(status);
+//             window.alert('No results found');
+//             return null ;
+//           }
+//         }
+//       })
+//     });
+//   })).then(data => {
+//       console.log(data);
+//       this.formatedAddresses = data
+//     });
+
+// },
+
+
+<!-- Addresses.vue -->
+
+<!-- <template>
+  <v-list-tile
+  :key="index"
+  avatar
+  ripple
+  @click="toggle(index)"
+  >
+  <v-list-tile-content>
+    <v-list-tile-title>{{ item.title }} </v-list-tile-title>
+    <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
+    <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>
+  </v-list-tile-content>
+  <v-list-tile-action>
+    <v-list-tile-action-text>{{ item.action }}</v-list-tile-action-text>
+    <v-icon
+    v-if="selected.indexOf(index) < 0"
+    color="grey lighten-1"
+    >star_border
+  </v-icon>
+  <v-icon
+  v-else
+  color="yellow darken-2"
+  >star
+</v-icon>
+</v-list-tile-action>
+</v-list-tile>
+<v-divider v-if="index + 1 < items.length" :key="index"></v-divider>
+</template>
+-->
+
+
+<!--this is the functoin for goecdoed addres-->
+geocoded() {
+
+
+
+var self = this;
+
+let geocoder = new google.maps.Geocoder();
+
+let theLocations = this.locations;
+
+return Promise.all(_.map(theLocations, addr => {
+
+var geocoder = new google.maps.Geocoder();
+
+var locationss = {
+lat: parseFloat(addr.lat),
+lng: parseFloat(addr.lng)
+};
+
+// var sampleLocation = { lat: 1.39, lng: 103.8 };
+
+return new Promise(function (resolve, reject) {
+geocoder.geocode({'location': locationss}, function (results, status) {
+if (status === 'OK') {
+if (results[0]) {
+//                                    this.formatedAddresses = results[0].formatted_address;
+console.log(results[0].formatted_address);
+} else {
+console.log(status);
+window.alert('No results found');
+return null;
+}
+}
+})
+});
+
+})).then(data => {
+console.log(data)
+this.formatedAddresses = data;
+})

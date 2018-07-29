@@ -1,4 +1,4 @@
-export let style = [
+export const style = [
     {
         "featureType": "landscape",
         "stylers": [

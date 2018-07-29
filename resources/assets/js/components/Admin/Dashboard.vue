@@ -1,17 +1,10 @@
 <template>
 
 	<menu-tiles></menu-tiles>
-
 	<news-articles></news-articles>
-
-
 	<stats></stats>
 
-
-
-
 </template>
-
 <script>
 
 // components are .. menu-tiles
@@ -31,6 +24,7 @@ export default {
 
 	data () {
 		return {
+
 
 		}
 	}

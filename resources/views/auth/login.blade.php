@@ -4,9 +4,9 @@
 
 @if ( $detect->isMobile())
 
-	@include('partials.mobile.sidebar')
+@include('partials.mobile.sidebar')
 
-	@include('partials.mobile.toolbar')
+@include('partials.mobile.toolbar')	
 
 
 @endif
@@ -27,19 +27,15 @@
 			@endif
 
 
-	</h1>
+		</h1>
 
 		
 		<h5>Log In to your Account</h5>
-
-
-
 		<form action="{{ url('login') }}" id="loginForm" method="POST">
 
 			{{ csrf_field() }}
 
 			<div class="p-20">
-
 				<div class="input-field center">
 					<input class="validate" name="pin" id="login" type="text"> 
 					<label for="login">Username</label>
@@ -88,6 +84,8 @@
 
 
 		$('#loginForm').submit(); // Submit form code
+
+
 		
 	}
 	

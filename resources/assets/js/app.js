@@ -5,24 +5,21 @@ import './bootstrap';
 
 /** 
 'SPA Routes 
-
 **/
 import router from './routes';
 
-/**	Vuex Store 
 
-**/
-import store from './store';
-
+//Native MDL
 // import App from './views/App.vue';
 
 
 // When Using vuetify
-import Layout from './views/Layout.vue';
+import Mypharma from './views/Mypharma.vue';
 
 
 
-/* When rendering the admin in vue.
+/*
+ When rendering the admin in vue.
 
 // import Admin from './views/Admin.vue' ; 
 */
@@ -33,9 +30,9 @@ import Layout from './views/Layout.vue';
 
 const app = new Vue({
 	el :'#app',
-	render: h => h(Layout),
+	render: h => h(Mypharma),
 	router,
-	store
+	// store
 });	
 
 

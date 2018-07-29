@@ -7,10 +7,5 @@ use Carbon\Carbon;
 class PackagesFilters {
 
 
-	public function tomorrowsSMS(){
-		
-	}
-
-	
 
 }

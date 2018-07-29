@@ -1,8 +1,5 @@
 
 // From TutorialsPoint
-
-
-
 // import GMaps from 'gmaps';
 
 export function getCurrentPosition()

@@ -22,6 +22,7 @@ trait AuthenticatesUsers {
      */
    public function showLoginForm(){
 
+    app('debugbar')->disable();
     $detect = new DetectMobile();
     return view('auth.login')->with('detect',$detect);
 
@@ -31,7 +32,7 @@ trait AuthenticatesUsers {
      * 
       Backup Login
      **/
-    public function showBasicLogin(){
+      public function showBasicLogin(){
 
         return view('auth.login2');
 
@@ -83,10 +84,10 @@ trait AuthenticatesUsers {
     {
     	$this->validate($request, [
 
-         $this->username() => 'required',
-         'password' => 'required',
+           $this->username() => 'required',
+           'password' => 'required',
 
-     ]);
+       ]);
     }
 
     /**
@@ -131,13 +132,8 @@ trait AuthenticatesUsers {
         switch ($this->guard()->user()->role_id) 
         {
             case 1:  return 'admin.dashboard' ; break ;
-       
             case 2:  return 'socialworker.dashboard';break; 
-            
             case 3:  return 'courier.dashboard';break;             
-            
-
-
             default: return redirect()->back()->withInput();
         }   
     }
@@ -195,14 +191,8 @@ trait AuthenticatesUsers {
     {
     	\Auth::logout();
 
-
         flash()->overlay('You have successfully logged out', 'Success') ; 
-        
-
         return redirect()->back(); 
-        
-
-
 
     }
 
