@@ -1,6 +1,6 @@
 ## About Mypharma
 
-Mypharma is an mobile/web application that delivers medicines to all Indigent & Senior Citizens in Cebu City, Philippines
+Mypharma is a mobile/web application that delivers medicines to all Indigent & Senior Citizens in Cebu City, Philippines
 
 
 ## To start developing / using this application 
