@@ -1,10 +1,6 @@
 ## About Mypharma
 
-**Mypharma is a progressive  web application that delivers progressive capabilities that delivers free medicines to all senior citizens in Cebu City,PH** 
-
-TO use one : Here is a 
-[Youtube Video](https://www.youtube.com/watch?v=MxTaDhwJDLg)
-
+Mypharma is an mobile/web application that delivers medicines to all Indigent & Senior Citizens in Cebu City, Philippines
 
 
 ## To start developing / using this application 
@@ -61,3 +57,10 @@ I changed the repo kay nagsamok ang mga commit daghan kau issues ang git.
 
 
 
+
+## Known Issues after cloning :
+
+1. 2 whoops errors after cloning the project.
+
+Just rename the .env.example to .env then 
+run php artisan key:generate and composer dump-autoload
